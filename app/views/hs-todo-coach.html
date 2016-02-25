@@ -1,0 +1,126 @@
+<header ng-include="'views/include/header.html'"></header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+    <!--<div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 hidden-xs">-->
+    <!--<div class="col-sm-12">-->
+    <!--<div class="panel panel-default">-->
+    <!--<div class="panel-heading">-->
+    <!--<ol class="breadcrumb panel-title">-->
+    <!--<li><a href="#/">Home</a></li>-->
+    <!--<li>教练申请</li>-->
+    <!--</ol>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+      <div class="page-header">
+        <h3>教练申请</h3>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4 class="panel-title">教练申请</h4>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                <tr>
+                  <th class="text-center">申请时间</th>
+                  <th class="text-center">姓名</th>
+                  <th class="text-center">手机号</th>
+                  <th class="text-center">特长</th>
+                  <th class="text-center">状态</th>
+                  <th class="text-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in list">
+                  <td class="text-center">{{data.createTime}}</td>
+                  <td class="text-right">{{data.name}}</td>
+                  <td class="text-right">{{data.phone}}</td>
+                  <td class="text-right">{{data.specially}}</td>
+                  <td class="text-right">{{data.status}}</td>
+                  <td class="text-center"><a href="" data-toggle="modal" data-target=".handle-coach-modal">审核</a></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <div class="col-sm-12">
+                      <ul class="pagination"
+                          ng-show="!!totalPage">
+                        <li ng-class="{'active': isPage(1)}">
+                          <a ng-href=""
+                             ng-if="!isPage(1)"
+                             ng-click="loadPage(1)">首页</a>
+                          <span ng-if="isPage(1)">首页</span>
+                        </li>
+                        <li>
+                          <a ng-href=""
+                             ng-if="!isPage(1)"
+                             ng-click="loadPage(currentPage - 1)">
+                            <span>&laquo;</span>
+                          </a>
+                          <span ng-if="isPage(1)">&laquo;</span>
+                        </li>
+                        <li ng-repeat="page in pages"
+                            ng-class="{'active': isPage(page)}">
+                          <a ng-href=""
+                             ng-click="loadPage(page)"
+                             ng-if="!isPage(page)">{{page}}</a>
+                          <span ng-if="isPage(page)">{{page}}</span>
+                        </li>
+                        <li>
+                          <a ng-href=""
+                             ng-if="!isPage(totalPage)"
+                             ng-click="loadPage(currentPage + 1)">
+                            <span>&raquo;</span>
+                          </a>
+                          <span ng-if="isPage(totalPage)">&raquo;</span>
+                        </li>
+                        <li ng-class="{'active': isPage(totalPage)}">
+                          <a ng-href=""
+                             ng-if="!isPage(totalPage)"
+                             ng-click="loadPage(totalPage)">末页</a>
+                          <span ng-if="isPage(totalPage)">末页</span>
+                        </li>
+                        <li>
+                          <span>{{currentPage + "/" + totalPage}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal handle-coach-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">审核教练申请</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="">确认</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div><!-- /.modal -->

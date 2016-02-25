@@ -1,0 +1,52 @@
+<header ng-include="'views/include/header.html'"></header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+    <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+      <div class="page-header">
+        <h3>我的场馆</h3>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">场馆列表</h4>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>状态</th>
+                  <th class="text-right">已提现</th>
+                  <th class="text-right">提现中</th>
+                  <th class="text-right">余额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in smGymList.data">
+                  <td><a ng-href="#/sm/gym-overview/{{data.id}}">{{data.name}}</a></td>
+                  <td>{{data.status}}</td>
+                  <td class="text-right">{{data.withdrawed | currency}}</td>
+                  <td class="text-right">{{data.withdrawing | currency}}</td>
+                  <td class="text-right">{{data.balance | currency}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">其他信息</h4>
+            </div>
+            <div class="panel-body">
+              <p><a href=""></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

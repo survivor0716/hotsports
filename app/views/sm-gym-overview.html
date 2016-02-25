@@ -1,0 +1,384 @@
+<!--include 顶部导航栏-->
+<header ng-include="'views/include/header.html'"></header>
+<div class="container-fluid">
+  <div class="row">
+    <!--include 左侧sidebar-->
+    <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+    <!--Main: start-->
+    <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+      <!--Alert-->
+      <div class="alert alert-success" ng-class="alertType" ng-show="alertMsg">
+        <button type="button" class="close" data-dismiss="alert">
+          <span>&times;</span>
+        </button>
+        {{alertMsg}}
+      </div>
+      <!--page-header-->
+      <div class="page-header">
+        <h3>场馆概况</h3>
+      </div>
+      <!--余额等3栏信息-->
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="col-md-4">
+            <div class="row text-center">
+              <h3>提现中</h3>
+
+              <h2>{{gymData.withdrawing | currency}}</h2>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row text-center">
+              <h3>余额</h3>
+
+              <h2>{{gymData.balance | currency}}</h2>
+
+              <div class="col-xs-6 col-xs-offset-3">
+                <button class="btn btn-success form-control" data-toggle="modal" data-target=".withdraw-modal" ng-click="">提现</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row text-center">
+              <h3>已提现</h3>
+
+              <h2>{{gymData.withdrawed | currency}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Panels: start-->
+      <div class="row">
+        <div class="col-sm-4">
+          <!--场馆信息Panel-->
+          <div class="panel panel-default" ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">场馆信息</h4>
+            </div>
+            <div class="panel-body">
+              <p>场馆名称：{{gymData.name}}</p>
+
+              <p>场馆地址：{{gymData.province + gymData.city + gymData.district + gymData.street + gymData.addDetail}}</p>
+
+              <p>场馆电话：{{gymData.tel}}</p>
+
+              <p>场馆类型：</p>
+
+              <div class="row">
+                <div class="col-xs-2 text-center" ng-repeat="type in gymType">
+                  <img ng-src="{{type.imgSelected}}" alt="" width="100%">
+
+                  <p>{{type.name}}</p>
+                </div>
+              </div>
+            </div>
+            <!--<div class="panel-footer text-right">-->
+            <!--<a href="#/sm/gym-detail">查看场馆详情</a>-->
+            <!--</div>-->
+          </div>
+          <!--&lt;!&ndash;常用操作Panel&ndash;&gt;-->
+          <!--<div class="panel panel-default" ng-class="panelStyle">-->
+          <!--<div class="panel-heading">-->
+          <!--<h4 class="panel-title">常用操作</h4>-->
+          <!--</div>-->
+          <!--<div class="panel-body">-->
+          <!--<button class="btn btn-default" data-toggle="modal" data-target=".withdraw-modal" ng-click="">提现</button>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<div class="panel-footer text-right">&ndash;&gt;-->
+          <!--&lt;!&ndash;<a href="">查看场馆详情</a>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--</div>-->
+        </div>
+        <div class="col-sm-8">
+          <!--最近订单Panel-->
+          <div class="panel panel-default" ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">最近订单</h4>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                <tr>
+                  <th class="text-center">创建时间</th>
+                  <th class="text-center">订单编号</th>
+                  <th class="text-center">交易金额</th>
+                  <th class="text-center">交易状态</th>
+                  <th class="text-center">交易方式</th>
+                  <th class="text-center">支付时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in orderData.orderList">
+                  <td class="text-center">{{data.createTime}}</td>
+                  <td class="text-right">{{data.out_trade_no}}</td>
+                  <td class="text-right">{{data.total_fee | currency}}</td>
+                  <td class="text-center">{{data.trade_status}}</td>
+                  <td class="text-center">{{data.trade_method}}</td>
+                  <td class="text-center">{{data.paymentTime}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-footer text-right">
+              <a href="#/sm/order-list">查看所有订单</a>
+            </div>
+          </div>
+          <!--提现Panel-->
+          <div class="panel panel-default" ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">提现记录</h4>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                <tr>
+                  <th class="text-center">申请时间</th>
+                  <th class="text-center">管理员信息</th>
+                  <th class="text-center">订单状态</th>
+                  <th class="text-center">金额
+                  <th class="text-center">支付时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in gymWithdrawData.withdrawalList">
+                  <td class="text-center">{{data.createTime}}</td>
+                  <td class="text-right">{{data.userInfo.phone}}</td>
+                  <td class="text-right">{{data.status}}</td>
+                  <td class="text-right">{{data.total_fee | currency}}</td>
+                  <td class="text-center">{{data.paymentTime}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--<div class="panel-footer text-right">-->
+            <!--<a href="#/sm/order-list">查看所有订单</a>-->
+            <!--</div>-->
+          </div>
+          <!--管理员Panel-->
+          <div class="panel panel-default" ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">管理员</h4>
+            </div>
+            <!--工具栏: start-->
+            <ul class="list-group">
+              <!--添加收银员按钮-->
+              <li class="list-group-item">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-success btn-sm" ng-click="toggleAddCashierForm()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    添加
+                  </button>
+                </div>
+              </li>
+              <!--添加收银员: start-->
+              <li class="list-group-item" ng-show="collapseAddCashierForm">
+                <h4>添加收银员</h4>
+                <!--第一步验证手机号码-->
+                <form class="form-horizontal" ng-submit="submitCheckCashier()" ng-show="!showNext">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">＊手机号码:</label>
+
+                    <div class="col-sm-4">
+                      <input type="tel" class="form-control" placeholder="请输入手机号码" ng-model="phone" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">＊验证码:</label>
+
+                    <div class="col-sm-4">
+                      <div class="input-group">
+                        <input type="tel" class="form-control" placeholder="请输入验证码" ng-model="code" required>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="smsCode()">获取验证码</button>
+                      </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-4">
+                      <button type="submit" class="btn btn-success">提交</button>
+                      <button type="button" class="btn btn-default" ng-click="toggleAddCashierForm()">取消</button>
+                    </div>
+                  </div>
+                </form>
+                <!--第二步添加-->
+                <form class="form-horizontal" ng-submit="cashierExist ? submitBindCashier() : submitAddCashier()" ng-show="showNext">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">手机号码:</label>
+
+                    <div class="col-sm-4">
+                      <input type="tel" class="form-control" placeholder="请输入手机号码" ng-model="phone" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">昵称:</label>
+
+                    <div class="col-sm-4">
+                      <input type="tel" class="form-control" placeholder="请输入昵称" ng-model="addCashierParams.nickName" ng-disabled="cashierExist">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">性别:</label>
+
+                    <div class="col-sm-4">
+                      <label class="radio-inline">
+                        <input type="radio" name="cashierSex" value="1" ng-model="addCashierParams.sex" ng-checked="addCashierParams.sex" ng-disabled="cashierExist">
+                        男
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="cashierSex" value="0" ng-model="addCashierParams.sex" ng-checked="!addCashierParams.sex" ng-disabled="cashierExist">
+                        女
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-4">
+                      <button type="submit" class="btn btn-success">{{cashierExist ? '绑定' : '添加'}}</button>
+                      <button type="button" class="btn btn-default" ng-click="toggleAddCashierForm()">取消</button>
+                    </div>
+                  </div>
+                </form>
+              </li>
+              <!--添加收银员: end-->
+            </ul>
+            <!--工具栏: end-->
+            <!--管理员Table: start-->
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                <tr>
+                  <th class="text-center">昵称</th>
+                  <th class="text-center">手机号</th>
+                  <th class="text-center">权限</th>
+                  <th class="text-center">已关注微信服务号</th>
+                  <th class="text-center">已绑定微信openId</th>
+                  <th class="text-center">接收微信消息推送</th>
+                  <th class="text-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in superManagerData">
+                  <td class="text-center">{{data.nickName}}</td>
+                  <td class="text-center">{{data.phone}}</td>
+                  <td class="text-center">场馆管理员</td>
+                  <td class="text-center">
+                    <span class="glyphicon glyphicon-ok" ng-if="data.follow"></span>
+                    <span class="glyphicon glyphicon-minus" ng-if="!data.follow"></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="glyphicon glyphicon-ok" ng-if="data.bind"></span>
+                    <span class="glyphicon glyphicon-minus" ng-if="!data.bind"></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="glyphicon glyphicon-ok" ng-if="data.receiveGymPayTemplateMsg"></span>
+                    <span class="glyphicon glyphicon-minus" ng-if="!data.receiveGymPayTemplateMsg"></span>
+                  </td>
+                  <td class="text-center"></td>
+                </tr>
+                <tr ng-repeat="data in cashierData">
+                  <td class="text-center">{{data.nickName}}</td>
+                  <td class="text-center">{{data.phone}}</td>
+                  <td class="text-center">收银员</td>
+                  <td class="text-center">
+                    <span class="glyphicon glyphicon-ok" ng-if="data.follow"></span>
+                    <span class="glyphicon glyphicon-minus" ng-if="!data.follow"></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="glyphicon glyphicon-ok" ng-if="data.bind"></span>
+                    <span class="glyphicon glyphicon-minus" ng-if="!data.bind"></span>
+                  </td>
+                  <td class="text-center">
+                    <!--<div class="checkbox">-->
+                    <!--<label>-->
+                    <input type="checkbox"
+                           ng-model="data.receiveGymPayTemplateMsg"
+                           ng-checked="data.receiveGymPayTemplateMsg"
+                           ng-change="toggleReceiveGymPayTemplateMsg(data.id, data.receiveGymPayTemplateMsg)">
+                    <!--</label>-->
+                    <!--</div>-->
+                    <!--<span class="glyphicon glyphicon-ok" ng-if="data.receiveGymPayTemplateMsg"></span>-->
+                    <!--<span class="glyphicon glyphicon-minus" ng-if="!data.receiveGymPayTemplateMsg"></span>-->
+                  </td>
+                  <td class="text-center">
+                    <a href="" data-toggle="modal" data-target=".remove-cashier-modal" ng-click="setCurrentCashier(data.id)">
+                      <!--<span class="glyphicon glyphicon-remove"></span>-->移除</a>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--管理员Table: end-->
+          </div>
+          <!--&lt;!&ndash;操作记录Panel&ndash;&gt;-->
+          <!--<div class="panel panel-default" ng-class="panelStyle">-->
+          <!--<div class="panel-heading">-->
+          <!--<h4 class="panel-title">操作记录</h4>-->
+          <!--</div>-->
+          <!--<div class="panel-body">-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+      </div>
+      <!--Panels: end-->
+    </div>
+    <!--Main: end-->
+  </div>
+</div>
+<!--移除收银员弹窗-->
+<div class="modal remove-cashier-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">移除收银员</h4>
+      </div>
+      <div class="modal-body">
+        <p>是否确认移除收银员 {{currentCashier}} ？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="submitRemoveCashier(currentCashier)">确认移除</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--申请提现弹窗-->
+<div class="modal withdraw-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">申请提现</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label">金额:</label>
+            <div class="col-sm-5">
+              <input type="number" class="form-control" id="inputAmount" placeholder="请输入提现金额" ng-model="inputAmount"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-2 control-label">选择提现账户:</label>
+            <div class="col-sm-5">
+              <!--<input type="number" class="form-control" id="inputAmount1" placeholder="请输入提现金额"/>-->
+              <select class="form-control" ng-options="(data.accountBank + ' ' + data.accountNumber) for data in accountData" ng-model="inputAccount"></select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="withdraw()">提交</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,169 @@
+<header ng-include="'views/include/header.html'"></header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+    <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+      <div class="page-header">
+        <h1>场馆检索</h1>
+      </div>
+      <p>请选择搜索条件: </p>
+
+      <div class="row">
+        <div class="btn-group col-md-4 col-sm-12">
+          <div class="btn-group">
+            <!--<button type="button" class="btn btn-info">{{amapTypeSelected1}}</button>-->
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{amapTypeSelected1}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="type in amapTypeList1 track by $index"><a href="" ng-click="selectType1(type)">{{type.name}}</a>
+            </ul>
+          </div>
+          <div class="btn-group">
+            <!--<button type="button" class="btn btn-success">{{amapTypeSelected2}}</button>-->
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{amapTypeSelected2}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="type in amapTypeList2 track by $index"><a href="" ng-click="selectType2(type)">{{type.name}}</a>
+            </ul>
+          </div>
+          <div class="btn-group">
+            <!--<button type="button" class="btn btn-warning">{{amapTypeSelected3}}</button>-->
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{amapTypeSelected3}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="type in amapTypeList3 track by $index"><a href="" ng-click="selectType3(type)">{{type.name}}</a>
+            </ul>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default" ng-click="search()">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="" ng-model="query.province"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default">省份</button>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="" ng-model="query.city"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default">城市</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div ng-hide="!totalPage">
+        <div class="row">
+          <div class="col-sm-12 text-right">
+            <div class="btn-group">
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger" ng-click="lockAllGyms()">锁定全部</button>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">列表项
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="(k, v) in gyms[0]">
+                    <div class="container-fluid">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" ng-model="gymTerms[k]" ng-checked="gymTerms[k]"/>
+                          {{k}}
+                        </label>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover table-condensed">
+            <thead>
+            <tr>
+              <th ng-repeat="(key, value) in gyms[0]" ng-show="gymTerms[key]">{{key}}</th>
+              <!--<th>name</th>-->
+              <!--<th>tel</th>-->
+              <!--<th>district</th>-->
+              <!--<th>addressDetail</th>-->
+              <!--<th>amapType</th>-->
+              <!--<th>amapId</th>-->
+              <!--<th>adcode</th>-->
+              <!--<th>citycode</th>-->
+              <!--<th>pcode</th>-->
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(key, value) in gyms" ng-class="{danger: value.status < 0}">
+              <td ng-repeat="(k, v) in value" ng-show="gymTerms[k]">
+                <a href="" ng-if="k === 'name'" ng-click="showInfo(value)">{{v}}</a>
+                <span ng-if="k != 'name'">{{v}}</span>
+              </td>
+              <!--<td>{{gym.name}}</td>-->
+              <!--<td>{{gym.tel}}</td>-->
+              <!--<td>{{gym.district}}</td>-->
+              <!--<td>{{gym.addressDetail}}</td>-->
+              <!--<td>{{gym.amapType}}</td>-->
+              <!--<td>{{gym.amapId}}</td>-->
+              <!--<td>{{gym.adcode}}</td>-->
+              <!--<td>{{gym.citycode}}</td>-->
+              <!--<td>{{gym.pcode}}</td>-->
+              <td>
+                <div class="btn-group btn-group-sm">
+                  <button type="button" class="btn btn-default" ng-click="showInfo(value)">修改</button>
+                  <button type="button" class="btn btn-default" ng-click="lockGym(value.id)">锁定</button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <nav>
+          <ul class="pagination">
+            <li ng-class="{'active': isPage(1)}">
+              <a ng-href="#/gym/list/1" ng-hide="isPage(1)">首页</a>
+              <span ng-show="isPage(1)">首页</span>
+            </li>
+            <li>
+              <a ng-href="#/gym/list/{{currentPage - 1}}" ng-hide="isPage(1)">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+              <span ng-show="isPage(1)">&laquo;</span>
+            </li>
+            <li ng-repeat="page in pages" ng-class="{'active': isPage(page)}">
+              <a ng-href="#/gym/list/{{page}}" ng-hide="isPage(page)">{{page}}</a>
+              <span ng-show="isPage(page)">{{page}}</span>
+            </li>
+            <li>
+              <a ng-href="#/gym/list/{{currentPage + 1}}" ng-hide="isPage(totalPage)">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+              <span ng-show="isPage(totalPage)">&raquo;</span>
+            </li>
+            <li ng-class="{'active': isPage(totalPage)}">
+              <a ng-href="#/gym/list/{{totalPage}}" ng-hide="isPage(totalPage)">末页</a>
+              <span ng-show="isPage(totalPage)">末页</span>
+            </li>
+            <li>
+              <span> {{currentPage + "/" + totalPage}} </span>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<!--include 顶部导航栏-->
+<header ng-include="'views/include/header.html'"></header>
+<div class="container-fluid">
+  <div class="row">
+    <!--include 左侧sidebar-->
+    <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+    <!--Main: start-->
+    <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+      <!--Alert-->
+      <div class="alert alert-success" ng-class="alertType" ng-show="alertMsg">
+        <button type="button" class="close" data-dismiss="alert">
+          <span>&times;</span>
+        </button>
+        {{alertMsg}}
+      </div>
+      <!--page-header-->
+      <div class="page-header">
+        <h3>订单列表</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!--查询订单Panel-->
+          <div class="panel panel-default" ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">查询订单</h4>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <form ng-submit="searchOrder()">
+                  <div class="col-sm-2 input-group">
+                    <input type="text" class="form-control" placeholder="请输入订单编号" ng-model="out_trade_no"/>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                          <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                  </div>
+                </form>
+              </li>
+            </ul>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                <tr>
+                  <th class="text-center">创建时间</th>
+                  <th class="text-center">收银员</th>
+                  <th class="text-center">订单编号</th>
+                  <th class="text-center">交易金额</th>
+                  <th class="text-center">交易状态</th>
+                  <th class="text-center">交易方式</th>
+                  <th class="text-center">支付时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in list">
+                  <td class="text-center">{{data.createTime}}</td>
+                  <td class="text-center">【{{data.cashierNickName}}】 {{data.cashierPhone}}</td>
+                  <td class="text-right">{{data.out_trade_no}}</td>
+                  <td class="text-right">{{data.total_fee | currency}}</td>
+                  <td class="text-center">{{data.trade_status}}</td>
+                  <td class="text-center">{{data.trade_method}}</td>
+                  <td class="text-center">{{data.paymentTime}}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <div class="col-sm-12">
+                      <ul class="pagination" ng-show="!!totalPage">
+                        <li ng-class="{'active': isPage(1)}">
+                          <a ng-href="" ng-if="!isPage(1)" ng-click="loadPage(1)">首页</a>
+                          <span ng-if="isPage(1)">首页</span>
+                        </li>
+                        <li>
+                          <a ng-href="" ng-if="!isPage(1)" ng-click="loadPage(currentPage - 1)">
+                            <span>&laquo;</span>
+                          </a>
+                          <span ng-if="isPage(1)">&laquo;</span>
+                        </li>
+                        <li ng-repeat="page in pages" ng-class="{'active': isPage(page)}">
+                          <a ng-href="" ng-click="loadPage(page)" ng-if="!isPage(page)">{{page}}</a>
+                          <span ng-if="isPage(page)">{{page}}</span>
+                        </li>
+                        <li>
+                          <a ng-href="" ng-if="!isPage(totalPage)" ng-click="loadPage(currentPage + 1)">
+                            <span>&raquo;</span>
+                          </a>
+                          <span ng-if="isPage(totalPage)">&raquo;</span>
+                        </li>
+                        <li ng-class="{'active': isPage(totalPage)}">
+                          <a ng-href="" ng-if="!isPage(totalPage)" ng-click="loadPage(totalPage)">末页</a>
+                          <span ng-if="isPage(totalPage)">末页</span>
+                        </li>
+                        <li>
+                          <span>{{currentPage + "/" + totalPage}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!--<div class="panel-body">-->
+            <!--<p>说明：</p>-->
+
+            <!--<p>1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error fugiat, harum? Doloremdolores est nesciunt quae sunt temporibus unde ut.</p>-->
+
+            <!--<p>2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus aliquam, aspernaturdebitis deserunt dolor ipsa laborum maiores mollitia pariatur, quam sequi soluta velit voluptates.</p>-->
+
+            <!--<p>3. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cupiditate eligendiharum nulla perferendis quibusdam repellendus reprehenderit veniam voluptas? Architecto aspernatur doloribus ducimus eum inventore magnam minima nihil perferendis velit?</p>-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Main: end-->
+  </div>
+</div>

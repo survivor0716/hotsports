@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+  <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+    <div class="page-header">
+      <h1>客服登录</h1>
+    </div>
+    <form class="form-signin">
+      <input type="tel" class="form-control" placeholder="请输入手机号" ng-model="coachPhone"/>
+      <input type="password" class="form-control" placeholder="请输入密码" ng-model="coachPassword"/>
+      <p class="text-danger" ng-show="1">{{errMsg}}</p>
+      <button type="button" class="btn btn-lg btn-success btn-block" ng-click="login()">登录</button>
+    </form>
+  </div>
+</div>

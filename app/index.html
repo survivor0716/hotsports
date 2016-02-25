@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>热动·HotSports</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/dashboard.css">
+  <!--<link rel="stylesheet" href="styles/signin.css">-->
+  <link rel="stylesheet" href="styles/business_in.css">
+  <!-- endbuild -->
+  <script src="http://webapi.amap.com/maps?v=1.3&key=1e0a170daa308a20f0ba59ab2661f006"></script>
+</head>
+<body ng-app="hotsportsApp" ng-controller="ApplicationCtrl">
+<!--[if lte IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div ng-view="" style="height: 100%;"></div>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="../bower_components/angular-i18n/angular-locale_zh-cn.js"></script>
+<script src="vendor/jQuery.md5.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/about.js"></script>
+<script src="scripts/controllers/contact.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/controllers/coach.js"></script>
+<script src="scripts/controllers/coach-info.js"></script>
+<script src="scripts/controllers/gym.js"></script>
+<script src="scripts/controllers/gym-info.js"></script>
+<script src="scripts/controllers/coach-list.js"></script>
+<script src="scripts/controllers/feedback.js"></script>
+<script src="scripts/controllers/resource.js"></script>
+<script src="scripts/controllers/res-videos.js"></script>
+<script src="scripts/controllers/res-video-details.js"></script>
+<script src="scripts/services/videodetails.js"></script>
+<script src="scripts/controllers/gym-list.js"></script>
+<script src="scripts/services/gymservice.js"></script>
+<script src="scripts/services/queryfilterservice.js"></script>
+<script src="scripts/services/serviceconfig.js"></script>
+<script src="scripts/controllers/manager-order-list.js"></script>
+<script src="scripts/controllers/manager-qrcode.js"></script>
+<script src="scripts/services/SuperManagerService.js"></script>
+<script src="scripts/services/HotSportsManagerService.js"></script>
+<script src="scripts/services/authservice.js"></script>
+<script src="scripts/controllers/application.js"></script>
+<script src="scripts/controllers/gym-order.js"></script>
+<script src="scripts/controllers/gym-detail.js"></script>
+<script src="scripts/controllers/hs-gym-list.js"></script>
+<script src="scripts/controllers/hs-gym-create.js"></script>
+<script src="scripts/controllers/hs-gym-detail.js"></script>
+<script src="scripts/controllers/sm-gym-list.js"></script>
+<script src="scripts/controllers/sm-gym-overview.js"></script>
+<script src="scripts/controllers/sm-gym-detail.js"></script>
+<script src="scripts/controllers/sm-order-list.js"></script>
+<script src="scripts/controllers/hs-todo-withdraw.js"></script>
+<script src="scripts/controllers/hs-todo-coach.js"></script>
+<script src="scripts/controllers/change-password.js"></script>
+<!-- endbuild -->
+</body>
+</html>

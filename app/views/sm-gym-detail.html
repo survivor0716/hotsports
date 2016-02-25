@@ -1,0 +1,106 @@
+<header ng-include="'views/include/header.html'"></header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+
+    <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+      <div class="panel panel-default hidden-xs">
+        <div class="panel-heading">
+          <ol class="breadcrumb panel-title">
+            <li><a id="alert1"
+                   href="#/">Home</a></li>
+            <li><a href="#/sm/gym-list">我的场馆</a></li>
+            <li class="active"><a ng-href="#/sm/gym-overview/{{gid}}">场馆概况</a></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="alert alert-success"
+           ng-class="alertType"
+           ng-show="alertMsg">
+        <button type="button"
+                class="close"
+                data-dismiss="alert">
+          <span>&times;</span>
+        </button>
+        {{alertMsg}}
+      </div>
+
+      <div class="page-header">
+        <h3>场馆详情</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="col-md-4">
+            <div class="text-center">
+              <h2>{{smGymOverview.gymData.withdrawing}}</h2>
+              <h5>提现中</h5>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="text-center">
+              <h2>{{smGymOverview.gymData.balance}}</h2>
+              <h5>余额</h5>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="text-center">
+              <h2>{{smGymOverview.gymData.withdrawed}}</h2>
+              <h5>已提现</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-default" ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">场馆信息</h4>
+            </div>
+            <div class="panel-body">
+              <p ng-repeat="(v, k) in smGymDetail.gymData">{{v}}: {{k}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="panel panel-default" ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">账户信息</h4>
+            </div>
+            <div class="panel-body">
+              <div class="row" ng-repeat="data in smGymDetail.accountData">
+                <p>====================================</p>
+                <p ng-repeat="(v, k) in data">{{v}}: {{k}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="panel panel-default" ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">其他</h4>
+            </div>
+            <div class="panel-body">
+
+            </div>
+          </div>
+          <div class="panel panel-default"
+               ng-class="panelStyle">
+            <div class="panel-heading">
+              <h4 class="panel-title">常用操作</h4>
+            </div>
+            <div class="panel-body">
+              <button class="btn btn-default"
+                      ng-click="smGymOverview.withdraw()">提现
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

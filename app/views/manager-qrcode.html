@@ -1,0 +1,45 @@
+<header ng-include="'views/include/header.html'"></header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+    <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+      <div class="qrcode">
+        <div class="qrcode-img">
+          <img ng-src="{{qrcode_src}}" alt="" class="img-responsive center-block" width="100%"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  html {
+    font-size: 100px;
+  }
+
+  .qrcode {
+    height: 12.06rem;
+    background: url(images/qrcode_print_1206.png) no-repeat 50% 0;
+    background-size: cover;
+    margin: -20px;
+  }
+
+  .qrcode .qrcode-img {
+    width: 4rem;
+    margin: 0 auto;
+    padding-top: 4.05rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    .qrcode {
+      width: 630px;
+      height: 905px;
+      margin: 0 auto;
+    }
+
+    .qrcode .qrcode-img {
+      width: 290px;
+      margin: 0 auto;
+      padding-top: 310px;
+    }
+  }
+</style>

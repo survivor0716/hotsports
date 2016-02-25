@@ -1,0 +1,62 @@
+<div class="panel panel-default" ng-if="isAuthorized([userRoles.hotsportsManager])" ng-init="refreshBadges()">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <h4 class="panel-title">待办事务</h4>
+  </div>
+  <div class="list-group">
+    <a href="/#/hs/todo/withdraw" class="list-group-item" ng-class="{active: currentPath == '#/hs/todo/withdraw'}">提现申请
+      <span class="badge" ng-if="withdrawBadges">{{withdrawBadges}}</span>
+    </a>
+    <a href="" class="list-group-item" ng-class="{active: currentPath == '12345'}">待审核场馆</a>
+    <a href="#/hs/todo/coach" class="list-group-item" ng-class="{active: currentPath == '#/hs/todo/coach'}">待审核教练
+      <span class="badge" ng-if="coachBadges">{{coachBadges}}</span>
+    </a>
+    <a href="" class="list-group-item">用户举报信息</a>
+  </div>
+</div>
+<div class="panel panel-default" ng-if="isAuthorized([userRoles.hotsportsManager])">
+  <div class="panel-heading">
+    <h4 class="panel-title">资源</h4>
+  </div>
+  <div class="list-group">
+    <a href="#/resource" class="list-group-item" ng-class="{active: currentPath == '#/resource'}">信息资源</a>
+  </div>
+</div>
+<div class="panel panel-default" ng-if="isAuthorized([userRoles.hotsportsManager])">
+  <div class="panel-heading">
+    <h4 class="panel-title">未处理信息</h4>
+  </div>
+  <div class="list-group">
+    <a href="#/gym/list" class="list-group-item" ng-class="{active: currentPath == '#/gym/list'}">所有高德地图场馆</a>
+  </div>
+</div>
+<div class="panel panel-default" ng-if="isAuthorized([userRoles.hotsportsManager])">
+  <div class="panel-heading">
+    <h4 class="panel-title">系统相关</h4>
+  </div>
+  <div class="list-group">
+    <a href="#/main" class="list-group-item" ng-class="{active: currentPath == '/main'}">Overview</a>
+    <a href="#/hs/gym-create" class="list-group-item" ng-class="{active: currentPath == '#/hs/gym-create'}">创建场馆</a>
+    <a href="#/hs/gym-list" class="list-group-item" ng-class="{active: currentPath == '#/hs/gym-list'}">认证场馆列表</a>
+    <a href="#/main" class="list-group-item" ng-class="{active: currentPath == '/main'}">Reports</a>
+    <a href="#/main" class="list-group-item" ng-class="{active: currentPath == '/main'}">系统设置</a>
+    <a href="#/feedback" class="list-group-item" ng-class="{active: currentPath == '/feedback'}">反馈信息</a>
+  </div>
+</div>
+<div class="panel panel-default" ng-if="isAuthorized([userRoles.superManager])">
+  <div class="panel-heading">
+    <h4 class="panel-title">场馆管理员</h4>
+  </div>
+  <div class="list-group">
+    <a href="#/sm/gym-list" class="list-group-item" ng-class="{active: currentPath == '#/sm/gym-list'}">我的场馆</a>
+  </div>
+</div>
+<div class="panel panel-default" ng-if="isAuthorized([userRoles.cashier])">
+  <div class="panel-heading">
+    <h4 class="panel-title">收银员</h4>
+  </div>
+  <div class="list-group">
+    <a href="#/manager/order-list" class="list-group-item" ng-class="{active: currentPath == '#/manager/order-list'}">场馆订单</a>
+    <a href="#/manager/qrcode" class="list-group-item" ng-class="{active: currentPath == '#/manager/qrcode'}">我的二维码</a>
+  </div>
+</div>

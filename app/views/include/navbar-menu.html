@@ -1,0 +1,59 @@
+<li class="dropdown" ng-if="isAuthorized(userRoles.superManager)">
+  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">场馆相关 <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li data-toggle="collapse" data-target="#js-navbar-collapse"><a href="#/sm/gym-list" >我的场馆</a></li>
+  </ul>
+</li>
+<li data-toggle="collapse" data-target="#js-navbar-collapse" ng-if="isAuthorized(userRoles.cashier)">
+  <a href="#/manager/order-list">场馆订单</a>
+</li>
+<li data-toggle="collapse" data-target="#js-navbar-collapse" ng-if="isAuthorized(userRoles.cashier)">
+  <a href="#/manager/qrcode">我的二维码</a>
+</li>
+
+
+
+<!--<div class="col-md-2 col-sm-3 sidebar">-->
+  <!--<div ng-if="isAuthorized()">-->
+    <!--<h3>待办事务</h3>-->
+    <!--<ul class="nav nav-sidebar">-->
+      <!--<li><a href="">待审核场馆</a></li>-->
+      <!--<li><a href="">待审核教练</a></li>-->
+      <!--<li><a href="">用户举报信息</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <!--<div ng-if="isAuthorized()">-->
+    <!--<h3>资源</h3>-->
+    <!--<ul class="nav nav-sidebar">-->
+      <!--<li><a href="#/resource">信息资源</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <!--<div ng-if="isAuthorized()">-->
+    <!--<h3>未处理信息</h3>-->
+    <!--<ul class="nav nav-sidebar">-->
+      <!--<li><a href="#/gym/list">所有高德地图场馆</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <!--<div ng-if="isAuthorized()">-->
+    <!--<h3>系统相关</h3>-->
+    <!--<ul class="nav nav-sidebar">-->
+      <!--<li class="active"><a href="">Overview <span class="sr-only">(current)</span></a></li>-->
+      <!--<li><a href="#/hs/gym-create">创建场馆</a></li>-->
+      <!--<li><a href="#/hs/gym-list">认证场馆列表</a></li>-->
+      <!--<li><a href="">Reports</a></li>-->
+      <!--<li><a href="">系统设置</a></li>-->
+      <!--<li><a href="#/feedback">反馈信息</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <!--<div ng-if="isAuthorized([userRoles.superManager])">-->
+    <!--<h3>场馆管理员可见</h3>-->
+    <!--<ul class="nav nav-sidebar">-->
+      <!--<li><a href="#/sm/gym-list">我的场馆</a></li>-->
+      <!--&lt;!&ndash;<li><a href="#/gym/order">场馆订单</a></li>&ndash;&gt;-->
+      <!--&lt;!&ndash;<li><a href="">绑定至指定场馆（搜索）</a></li>&ndash;&gt;-->
+      <!--&lt;!&ndash;<li><a href="">绑定其他管理员至场馆</a></li>&ndash;&gt;-->
+      <!--&lt;!&ndash;<li><a href="">添加其他管理员至场馆</a></li>&ndash;&gt;-->
+      <!--&lt;!&ndash;<li><a href="">活动列表（CURD）</a></li>&ndash;&gt;-->
+    <!--</ul>-->
+  <!--</div>-->
+<!--</div>-->
