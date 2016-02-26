@@ -62,13 +62,15 @@ angular
       return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
   })
-  .config(['$logProvider', '$routeProvider', 'USER_ROLES', function ($logProvider, $routeProvider, USER_ROLES) {
+  .config(['$logProvider', '$httpProvider', '$routeProvider', 'USER_ROLES', function ($logProvider, $httpProvider, $routeProvider, USER_ROLES) {
     ////去除url中总是默认带有"#"
     //$locationProvider.html5Mode({
     //  enabled: true,
     //  requireBase: false
     //});
     $logProvider.debugEnabled(true);
+
+    $httpProvider.interceptors.push('httpInterceptor');
 
     var authPromise = function (authorizedRoles) {
       return ['$log', '$q', 'USER_ROLES', 'AuthService', function ($log, $q, USER_ROLES, AuthService) {

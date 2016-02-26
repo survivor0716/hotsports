@@ -180,4 +180,25 @@ angular.module('hotsportsApp')
     this.$get = function () {
       //return {};
     };
-  });
+  })
+  .factory('httpInterceptor', ['$log', '$q', '$injector',function($log, $q, $injector) {
+    var httpInterceptor = {
+      'responseError' : function(response) {
+        $log.debug('responseError: ', response);
+        return $q.reject(response);
+      },
+      'response' : function(response) {
+        $log.debug('response: ', response);
+        return response;
+      },
+      'request' : function(config) {
+        $log.debug('request: ', config);
+        return config;
+      },
+      'requestError' : function(config){
+        $log.debug('requestError: ', config);
+        return $q.reject(config);
+      }
+    };
+    return httpInterceptor;
+  }]);
