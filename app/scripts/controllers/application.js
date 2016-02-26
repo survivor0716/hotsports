@@ -8,10 +8,12 @@
  * Controller of the hotsportsApp
  */
 angular.module('hotsportsApp')
-  .controller('ApplicationCtrl', function ($log, $window, $scope, $http, $location, $route, USER_ROLES, AuthService, HotSportsManagerService) {
+  .controller('ApplicationCtrl', function ($q, $log, $window, $scope, $http, $location, $route, USER_ROLES, AuthService, HotSportsManagerService) {
     function asyncGreet(name) {
       // perform some asynchronous operation, resolve or reject the promise when appropriate.
-      return new Promise(function(resolve, reject) {
+      return $q(function(resolve, reject) {
+        // This is only an example to create asynchronism
+        name += ' (rejected)';
         setTimeout(function() {
           if (0) {
             resolve('Hello, ' + name + '!');
