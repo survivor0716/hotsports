@@ -9,7 +9,25 @@
  */
 angular.module('hotsportsApp')
   .controller('ApplicationCtrl', function ($log, $window, $scope, $http, $location, $route, USER_ROLES, AuthService, HotSportsManagerService) {
+    function asyncGreet(name) {
+      // perform some asynchronous operation, resolve or reject the promise when appropriate.
+      return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+          if (0) {
+            resolve('Hello, ' + name + '!');
+          } else {
+            reject('Greeting ' + name + ' is not allowed.');
+          }
+        }, 1000);
+      });
+    }
 
+    var promise = asyncGreet('Robin Hood');
+    promise.then(function(greeting) {
+      alert('Success: ' + greeting);
+    }, function(reason) {
+      alert('Failed: ' + reason);
+    });
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthenticated = AuthService.isAuthenticated;
