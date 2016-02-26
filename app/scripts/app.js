@@ -311,12 +311,16 @@ angular
     });
 
     $rootScope.$on("$routeChangeError", function (event, current, previous, rejection) {
+      $log.debug(rejection);
       if (rejection.authenticated === false) {
         $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
 
       }
       if (rejection.authorized === false) {
         $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+      }
+      if(rejection.errCode === 2001) {
+        $rootScope.$broadcast(AUTH_EVENTS.sessionTimeout);
       }
     });
 

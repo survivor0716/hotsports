@@ -138,7 +138,7 @@ angular.module('hotsportsApp')
   .factory('PromiseCallback', function ($log, $q, $rootScope, AUTH_EVENTS) {
     return {
       successCallback: function (response) {
-        $log.debug(response);
+        $log.debug('successCallback', arguments);
         if (typeof response.data === 'object') {
           var data = response.data;
           //if (data.result) {
@@ -152,7 +152,7 @@ angular.module('hotsportsApp')
         }
       },
       failureCallback: function (response) {
-        //$log.debug(response);
+        $log.debug('failureCallback', arguments);
         return $q.reject(response.data);
       }
     };
@@ -177,7 +177,7 @@ angular.module('hotsportsApp')
       //return {};
     };
   })
-  .factory('httpInterceptor', ['$log', '$q', '$injector', function ($log, $q, $injector) {
+  .factory('httpInterceptor', ['$log', '$rootScope', '$q', 'AUTH_EVENTS', function ($log, $rootScope, $q, AUTH_EVENTS) {
     var httpInterceptor = {
       'responseError': function (response) {
         //$log.debug('responseError: ', response);
@@ -185,8 +185,6 @@ angular.module('hotsportsApp')
       },
       'response'     : function (response) {
         if (response.data.errCode == 2001) {
-          $log.debug(response);
-          $rootScope.$broadcast(AUTH_EVENTS.sessionTimeout);
           return $q.reject(response);
         }
         return response;
