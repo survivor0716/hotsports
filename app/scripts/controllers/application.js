@@ -9,6 +9,7 @@
  */
 angular.module('hotsportsApp')
   .controller('ApplicationCtrl', function ($log, $window, $scope, $http, $location, $route, USER_ROLES, AuthService, HotSportsManagerService) {
+
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthenticated = AuthService.isAuthenticated;
