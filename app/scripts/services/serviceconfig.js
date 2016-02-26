@@ -141,16 +141,12 @@ angular.module('hotsportsApp')
         $log.debug(response);
         if (typeof response.data === 'object') {
           var data = response.data;
-          if (data.result) {
-            return $q.resolve(data.data);
-          } else {
-            if (data.errCode == 2001) {
-              $log.debug(response);
-              $rootScope.$broadcast(AUTH_EVENTS.sessionTimeout);
-            }
-            //return $q.reject({errCode: data.errCode, errMsg: data.errMsg});
-            return $q.reject(data.errMsg);
-          }
+          //if (data.result) {
+          //  return $q.resolve(data.data);
+          //} else {
+          //  return $q.reject(data.errMsg);
+          //}
+          return data.result ? $q.resolve(data.data) : $q.reject(data.errMsg);
         } else {
           return $q.reject(response.data);
         }
@@ -181,22 +177,26 @@ angular.module('hotsportsApp')
       //return {};
     };
   })
-  .factory('httpInterceptor', ['$log', '$q', '$injector',function($log, $q, $injector) {
+  .factory('httpInterceptor', ['$log', '$q', '$injector', function ($log, $q, $injector) {
     var httpInterceptor = {
-      'responseError' : function(response) {
-        $log.debug('responseError: ', response);
+      'responseError': function (response) {
+        //$log.debug('responseError: ', response);
         return $q.reject(response);
       },
-      'response' : function(response) {
-        $log.debug('response: ', response);
+      'response'     : function (response) {
+        if (response.data.errCode == 2001) {
+          $log.debug(response);
+          $rootScope.$broadcast(AUTH_EVENTS.sessionTimeout);
+          return $q.reject(response);
+        }
         return response;
       },
-      'request' : function(config) {
-        $log.debug('request: ', config);
+      'request'      : function (config) {
+        //$log.debug('request: ', config);
         return config;
       },
-      'requestError' : function(config){
-        $log.debug('requestError: ', config);
+      'requestError' : function (config) {
+        //$log.debug('requestError: ', config);
         return $q.reject(config);
       }
     };
