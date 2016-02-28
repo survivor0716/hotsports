@@ -4,9 +4,9 @@ angular.module('hotsportsApp')
   })
   .directive('helloWorld',function(){
     return {
-      scope: {color:'@colorAttr'},  //指明了隔离作用域中的属性color应该绑定到属性colorAttr
+      scope:{color:'='},
       restrict: 'AE',
       replace: true,
-      template: '<p style="background-color:{{color}}">Hello World</p>'
+      template: '<div style="background-color:{{color}}">Hello World<div><input type="text" ng-model="color"></div></div>'
     }
   });

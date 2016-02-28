@@ -6,7 +6,8 @@
       登录用户信息: {{currentUser}}
       <div ng-controller='TestScopeController'>
         <input type="text" ng-model="color" placeholder="Enter a color"/>
-        <hello-world color-attr='{{color}}'></hello-world>   //注意这里设置了color-attr属性，绑定了{{color}}
+        {{color}}
+        <hello-world color='color'></hello-world>  //注意这里的写法 <input type="text" ng-model="color" placeholder="Enter a color"/>
       </div>
     </div>
   </div>
