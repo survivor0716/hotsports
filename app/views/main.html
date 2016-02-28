@@ -5,9 +5,9 @@
     <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
       登录用户信息: {{currentUser}}
       <div ng-controller='TestScopeController'>
-        <input type="text" ng-model="color" placeholder="Enter a color"/>
-        {{color}}
-        <hello-world color='color'></hello-world>  //注意这里的写法 <input type="text" ng-model="color" placeholder="Enter a color"/>
+        <input type="text" ng-model="name" placeholder="Enter a color"/>
+        {{name}}
+        <hello-world saysomething999="say();" name="{{name}}"></hello-world> //注意这里
       </div>
     </div>
   </div>

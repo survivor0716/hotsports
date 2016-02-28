@@ -1,12 +1,18 @@
 angular.module('hotsportsApp')
   .controller('TestScopeController', function ($scope) {
-
+    $scope.say = function () {
+      alert('hello');
+    };
+    $scope.name = 'leifeng';
   })
-  .directive('helloWorld',function(){
+  .directive('helloWorld', function () {
     return {
-      scope:{color:'='},
+      scope   : {
+        saysomething: '&saysomething999',
+        name        : '@'
+      },
       restrict: 'AE',
-      replace: true,
-      template: '<div style="background-color:{{color}}">Hello World<div><input type="text" ng-model="color"></div></div>'
+      replace : true,
+      template: '<button type="button" ng-bind="name" ng-init="saysomething();"></button>'
     }
   });
