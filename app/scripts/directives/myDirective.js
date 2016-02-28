@@ -1,11 +1,12 @@
 angular.module('hotsportsApp')
   .controller('TestScopeController', function ($scope) {
-    $scope.name = 'leifeng';
+
   })
-  .directive('myDirective', function () {
+  .directive('helloWorld',function(){
     return {
-      restrict: 'EA',
-      scope: true,//改变此处的取值,看看有什么不同
-      template: '<div>儿子:{{ name }}<input ng-model="name"/></div>'
-    };
+      scope: {color:'@colorAttr'},  //指明了隔离作用域中的属性color应该绑定到属性colorAttr
+      restrict: 'AE',
+      replace: true,
+      template: '<p style="background-color:{{color}}">Hello World</p>'
+    }
   });

@@ -5,9 +5,8 @@
     <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
       登录用户信息: {{currentUser}}
       <div ng-controller='TestScopeController'>
-        父亲: {{name}}
-        <input ng-model="name" />
-        <div my-directive></div>
+        <input type="text" ng-model="color" placeholder="Enter a color"/>
+        <hello-world color-attr='{{color}}'></hello-world>   //注意这里设置了color-attr属性，绑定了{{color}}
       </div>
     </div>
   </div>
