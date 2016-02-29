@@ -17,12 +17,12 @@ var SERVER_BASE_URL_PHP = 'http://app.hotsports.cn/index.php';
  * @description Badcat PHP后台接口域名地址
  * @type {string}
  */
-var SERVER_BASE_URL2_PHP = 'http://test.service.hotsports.cn/system/Api';
+var SERVER_BASE_URL2_PHP = 'http://service.hotsports.cn/system/Api';
 /**
  * @description JAVA后台接口域名地址
  * @type {string}
  */
-var SERVER_BASE_URL_JAVA = 'http://test.appserver.hotsports.cn';
+var SERVER_BASE_URL_JAVA = 'http://appserver.hotsports.cn';
 
 angular.module('hotsportsApp')
   .constant('ServiceConfig', {
