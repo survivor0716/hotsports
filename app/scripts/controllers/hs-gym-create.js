@@ -15,6 +15,8 @@ angular.module('hotsportsApp')
 
     $scope.selectedType = [];
 
+    $scope.disableSubmitBtn = false;
+
     HotSportsManagerService.sportType()
       .then(function (data) {
         $scope.typeList = data;
@@ -28,6 +30,7 @@ angular.module('hotsportsApp')
       });
 
     $scope.submitAddGYm = function () {
+      $scope.disableSubmitBtn = true;
       var params = {
         name      : $scope.name,
         tel       : $scope.tel,
@@ -49,6 +52,7 @@ angular.module('hotsportsApp')
         }, function (errMsg) {
           $log.debug('创建场馆失败', errMsg);
           $window.alert(errMsg);
+          $scope.disableSubmitBtn = false;
         });
     };
 
