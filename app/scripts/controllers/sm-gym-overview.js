@@ -86,8 +86,8 @@ angular.module('hotsportsApp')
       sex: null
     };
 
-    $scope.setCurrentCashier = function (id) {
-      $scope.currentCashier = id;
+    $scope.setCurrentCashier = function (currentCashier) {
+      $scope.currentCashier = currentCashier;
     };
 
     //验证欲添加收银员是否存在

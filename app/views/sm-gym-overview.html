@@ -300,7 +300,7 @@
                     <!--<span class="glyphicon glyphicon-minus" ng-if="!data.receiveGymPayTemplateMsg"></span>-->
                   </td>
                   <td class="text-center">
-                    <a href="" data-toggle="modal" data-target=".remove-cashier-modal" ng-click="setCurrentCashier(data.id)">
+                    <a href="" data-toggle="modal" data-target=".remove-cashier-modal" ng-click="setCurrentCashier(data)">
                       <!--<span class="glyphicon glyphicon-remove"></span>-->移除</a>
                   </td>
                 </tr>
@@ -335,11 +335,11 @@
         <h4 class="modal-title">移除收银员</h4>
       </div>
       <div class="modal-body">
-        <p>是否确认移除收银员 {{currentCashier}} ？</p>
+        <p>是否确认移除收银员 {{currentCashier.nickName}} ？</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="submitRemoveCashier(currentCashier)">确认移除</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="submitRemoveCashier(currentCashier.id)">确认移除</button>
       </div>
     </div>
     <!-- /.modal-content -->
