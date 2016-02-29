@@ -219,7 +219,7 @@ angular.module('hotsportsApp')
       SuperManagerService.gymWithdraw(params)
         .then(function (data) {
           $log.debug('申请提现成功', data);
-          $window.alert(data);
+          $window.alert('提现申请已提交');
         }, function (errMsg) {
           $log.debug('申请提现失败', errMsg);
           $window.alert(errMsg);
