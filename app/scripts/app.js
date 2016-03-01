@@ -64,7 +64,7 @@ angular
   })
   .config(['$logProvider', '$httpProvider', '$routeProvider', 'USER_ROLES', function ($logProvider, $httpProvider, $routeProvider, USER_ROLES) {
     ////去除url中总是默认带有"#"
-    //$locationProvider.html5Mode({
+    //$locationProvider.html5Mode({<script src="../bower_components/angular-i18n/angular-locale_zh-cn.js"></script>
     //  enabled: true,
     //  requireBase: false
     //});
