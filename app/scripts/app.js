@@ -286,6 +286,11 @@ angular
         }
       })
 
+      .when('/hs/todo/withdrawed', {
+        templateUrl: 'views/hs/hs-todo-withdrawed.html',
+        controller: 'HstodowithdrawedCtrl',
+        controllerAs: 'Hstodowithdrawed'
+      })
       .otherwise({
         redirectTo: '/'
       });

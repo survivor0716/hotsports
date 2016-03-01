@@ -12,7 +12,7 @@ angular.module('hotsportsApp')
     //Note that Angular appends 'Provider' to then end of the provider name
     $routeProvider
       .when('/hs/todo/withdraw', {
-        templateUrl : 'views/hs-todo-withdraw.html',
+        templateUrl : '../../views/hs/hs-todo-withdraw.html',
         controller  : 'HstodowithdrawCtrl',
         controllerAs: 'hsTodoWithdraw',
         resolve     : {
