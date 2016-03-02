@@ -25,6 +25,12 @@ angular.module('hotsportsApp')
     $scope.isDefaultAccount = false;
     $scope.showNext = false;
     $scope.smPhone = null;
+    $scope.tab = 1;
+
+    //选择tab页
+    $scope.setTab = function (tab) {
+      $scope.tab = tab;
+    };
 
     //验证欲添加场馆管理员是否存在
     $scope.submitCheckUser = function () {
