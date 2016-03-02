@@ -16,28 +16,47 @@ angular.module('hotsportsApp')
     $scope.cashierData = detailData.cashier;
     $scope.accountData = detailData.account;
 
-    $scope.withdrawCount = parseInt($scope.gymData.withdrawalCount);
-    $scope.withdrawLimit = parseInt($scope.gymData.withdrawalLimit);
-
     //默认参数
-    $scope.receiveMsg = true;
-    $scope.accType = 'PERSONAL';
-    $scope.isDefaultAccount = false;
+    $scope.gym = {
+      withdrawCount: parseInt($scope.gymData.withdrawalCount),
+      withdrawLimit: parseInt($scope.gymData.withdrawalLimit)
+    };
+    $scope.sm = {
+      phone     : null,
+      nickName  : null,
+      sex       : null,
+      receiveMsg: true
+    };
+    $scope.account = {
+      num             : null,
+      name            : null,
+      bank            : null,
+      bankCode        : null,
+      type            : 'PERSONAL',
+      phone           : null,
+      isDefaultAccount: false
+    };
+
     $scope.showNext = false;
-    $scope.smPhone = null;
+    $scope.tab = 1;
+
+    //选择tab页
+    $scope.setTab = function (tab) {
+      $scope.tab = tab;
+    };
 
     //验证欲添加场馆管理员是否存在
     $scope.submitCheckUser = function () {
       var params = {
-        phone: $scope.smPhone
+        phone: $scope.sm.phone
       };
       $log.debug('checkUser请求参数', params);
       HotSportsManagerService.checkUser(params)
         .then(function (data) {
           if (data.uid) {
             $scope.uid = data.uid;
-            $scope.smNickName = data.nickName;
-            $scope.smSex = data.sex;
+            $scope.sm.nickName = data.nickName;
+            $scope.sm.sex = data.sex;
             $scope.smExist = true;
           } else {
             $scope.smExist = false;
@@ -54,10 +73,10 @@ angular.module('hotsportsApp')
     $scope.submitAddSuperManager = function () {
       var params = {
         gid       : $scope.gymData.id,
-        phone     : $scope.smPhone,
-        nickName  : $scope.smNickName,
-        sex       : $scope.smSex || 0,
-        receiveMsg: $scope.receiveMsg
+        phone     : $scope.sm.phone,
+        nickName  : $scope.sm.nickName,
+        sex       : $scope.sm.sex || 0,
+        receiveMsg: $scope.sm.receiveMsg
       };
       $log.debug('添加场馆管理员请求参数', params);
       HotSportsManagerService.addSuperManager(params)
@@ -78,7 +97,7 @@ angular.module('hotsportsApp')
       var params = {
         gid       : $scope.gymData.id,
         uid       : $scope.uid,
-        receiveMsg: $scope.receiveMsg
+        receiveMsg: $scope.sm.receiveMsg
       };
       $log.debug('绑定场馆管理员请求参数', params);
       HotSportsManagerService.bindSuperManager(params)
@@ -96,25 +115,28 @@ angular.module('hotsportsApp')
         });
     };
 
-    //添加提现帐户
+    //reset添加管理员表单
     $scope.resetAddSuperManagerForm = function () {
+      $scope.account = {
+        phone     : null,
+        nickName  : null,
+        sex       : 0,
+        receiveMsg: true
+      };
       $scope.showNext = false;
-      $scope.smPhone = null;
-      $scope.smNickName = null;
-      $scope.smSex = 0;
-      $scope.receiveMsg = true;
     };
 
+    //添加提现帐户
     $scope.submitAddAccountInfo = function () {
       var params = {
-        accNum  : $scope.accNum,
-        accName : $scope.accName,
-        accBank : $scope.accBank,
-        bankCode: $scope.bankCode,
-        type    : $scope.accType,
-        phone   : $scope.accPhone,
         gid     : $scope.gymData.id,
-        default : $scope.isDefaultAccount
+        accNum  : $scope.account.num,
+        accName : $scope.account.name,
+        accBank : $scope.account.bank,
+        bankCode: $scope.account.bankCode,
+        type    : $scope.account.type,
+        phone   : $scope.account.phone,
+        default : $scope.account.isDefaultAccount
       };
       $log.debug(params);
       $http.post(ServiceConfig.hs_gym_account_add, params, {'withCredentials': true})
@@ -133,8 +155,8 @@ angular.module('hotsportsApp')
     $scope.submitEditWithdrawSettings = function () {
       var params = {
         gid  : $scope.gymData.id,
-        limit: $scope.withdrawLimit,
-        count: $scope.withdrawCount
+        limit: $scope.gym.withdrawLimit,
+        count: $scope.gym.withdrawCount
       };
       $log.debug(params);
       HotSportsManagerService.setWithdraw(params)

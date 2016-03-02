@@ -15,7 +15,7 @@ angular.module('hotsportsApp')
         return $q.reject(response);
       },
       'response'     : function (response) {
-        if (response.data.errCode == 2001) {
+        if (response.data.errCode === 2001) {
           return $q.reject(response);
         }
         return response;

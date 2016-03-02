@@ -2,43 +2,43 @@
 
 /**
  * @ngdoc function
- * @name hotsportsApp.controller:HstodowithdrawCtrl
+ * @name hotsportsApp.controller:HstodowithdrawedCtrl
  * @description
- * # HstodowithdrawCtrl
+ * # HstodowithdrawedCtrl
  * Controller of the hotsportsApp
  */
 angular.module('hotsportsApp')
   .config(['$routeProvider', 'USER_ROLES', 'RouteAuthResolveProvider', function ($routeProvider, USER_ROLES, RouteAuthResolveProvider) {
     //Note that Angular appends 'Provider' to then end of the provider name
     $routeProvider
-      .when('/hs/todo/withdraw', {
-        templateUrl : 'views/hs/hs-todo-withdraw.html',
-        controller  : 'HstodowithdrawCtrl',
-        controllerAs: 'hsTodoWithdraw',
+      .when('/hs/todo/withdrawed', {
+        templateUrl : 'views/hs/hs-todo-withdrawed.html',
+        controller  : 'HstodowithdrawedCtrl',
+        controllerAs: 'hsTodoWithdrawed',
         resolve     : {
           'auth'       : RouteAuthResolveProvider.auth(USER_ROLES.hotsportsManager)
-          //'processingListData': ['$q', 'HotSportsManagerService', function ($q, HotSportsManagerService) {
-          //  return HotSportsManagerService.withdraw({status: 'TRADE_PROCESSING'})
-          //    .then(function (data) {
-          //      return $q.resolve(data);
-          //    }, function (errMsg) {
-          //      //TODO: $routeChangeError event
-          //      return $q.reject(errMsg);
-          //    });
-          //}],
-          //'verifiedListData': ['$q', 'HotSportsManagerService', function ($q, HotSportsManagerService) {
-          //  return HotSportsManagerService.withdraw({status: 'TRADE_SUCCESS'})
-          //    .then(function (data) {
-          //      return $q.resolve(data);
-          //    }, function (errMsg) {
-          //      //TODO: $routeChangeError event
-          //      return $q.reject(errMsg);
-          //    });
-          //}]
+  //        //'processingListData': ['$q', 'HotSportsManagerService', function ($q, HotSportsManagerService) {
+  //        //  return HotSportsManagerService.withdraw({status: 'TRADE_PROCESSING'})
+  //        //    .then(function (data) {
+  //        //      return $q.resolve(data);
+  //        //    }, function (errMsg) {
+  //        //      //TODO: $routeChangeError event
+  //        //      return $q.reject(errMsg);
+  //        //    });
+  //        //}],
+  //        //'verifiedListData': ['$q', 'HotSportsManagerService', function ($q, HotSportsManagerService) {
+  //        //  return HotSportsManagerService.withdraw({status: 'TRADE_SUCCESS'})
+  //        //    .then(function (data) {
+  //        //      return $q.resolve(data);
+  //        //    }, function (errMsg) {
+  //        //      //TODO: $routeChangeError event
+  //        //      return $q.reject(errMsg);
+  //        //    });
+  //        //}]
         }
       });
   }])
-  .controller('HstodowithdrawCtrl', function ($log, $window, $scope, $route, HotSportsManagerService, QueryFilterService) {
+  .controller('HstodowithdrawedCtrl', function ($log, $window, $scope, $route, HotSportsManagerService, QueryFilterService) {
     $scope.setCurrentPath('#/hs/todo/withdraw');
 
     $scope.handleWithdraw = function (id) {
@@ -136,3 +136,4 @@ angular.module('hotsportsApp')
 
 
   });
+
