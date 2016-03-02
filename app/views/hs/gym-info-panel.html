@@ -1,0 +1,32 @@
+<!--场馆信息Panel-->
+<div class="panel panel-default">
+  <!--<div class="panel-heading">-->
+    <!--<h4 class="panel-title">场馆信息</h4>-->
+  <!--</div>-->
+  <div class="panel-body">
+    <p>场馆id：{{gymData.id}}</p>
+
+    <p>场馆名称：{{gymData.name}}</p>
+
+    <p>场馆地址：{{gymData.province + gymData.city + gymData.district + gymData.addDetail}}</p>
+
+    <p>场馆电话：{{gymData.tel}}</p>
+
+    <p>场馆头图：</p>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <img ng-src="{{gymData.headImg}}" alt="" height="100px"/>
+      </div>
+    </div>
+    <p>场馆类型：</p>
+
+    <div class="row">
+      <div class="col-xs-2 text-center" ng-repeat="item in gymType">
+        <img ng-src="{{item.imgSelected}}" alt="" width="100%">
+
+        <p>{{type.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>

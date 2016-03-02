@@ -6,88 +6,72 @@
       <div class="page-header">
         <h1>认证场馆列表</h1>
       </div>
-      <div class="col-sm-6">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h4 class="panel-title">认证场馆列表</h4>
-          </div>
-
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover table-condensed">
-              <thead>
-              <tr>
-                <th>名称</th>
-                <th>状态</th>
-                <th>操作</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="item in list">
-                <td><a ng-href="#/hs/gym-detail/{{item.id}}">{{item.name}}</a></td>
-                <td>{{item.status}}</td>
-                <td></td>
-              </tr>
-              </tbody>
-              <tfoot>
-              <tr>
-                <td colspan="3">
-                  <ul class="pagination"
-                      ng-show="!!list">
-                    <li ng-class="{'active': isPage(1)}">
-                      <a ng-href="#hs/gym-list/1"
-                         ng-if="!isPage(1)">首页</a>
-                      <span ng-if="isPage(1)">首页</span>
-                    </li>
-                    <li>
-                      <a ng-href="#hs/gym-list/{{currentPage - 1}}"
-                         ng-if="!isPage(1)">
-                        <span>&laquo;</span>
-                      </a>
-                      <span ng-if="isPage(1)">&laquo;</span>
-                    </li>
-                    <li ng-repeat="page in pages"
-                        ng-class="{'active': isPage(page)}">
-                      <a ng-href="#hs/gym-list/{{page}}"
-                         ng-click="loadPage(page)"
-                         ng-if="!isPage(page)">{{page}}</a>
-                      <span ng-if="isPage(page)">{{page}}</span>
-                    </li>
-                    <li>
-                      <a ng-href="#hs/gym-list/{{currentPage + 1}}"
-                         ng-if="!isPage(totalPage)">
-                        <span>&raquo;</span>
-                      </a>
-                      <span ng-if="isPage(totalPage)">&raquo;</span>
-                    </li>
-                    <li ng-class="{'active': isPage(totalPage)}">
-                      <a ng-href="#hs/gym-list/{{totalPage}}"
-                         ng-if="!isPage(totalPage)">末页</a>
-                      <span ng-if="isPage(totalPage)">末页</span>
-                    </li>
-                    <li>
-                      <span>{{currentPage + "/" + totalPage}}</span>
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-              </tfoot>
-            </table>
-          </div>
-
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">认证场馆列表</h4>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover table-condensed">
+            <thead>
+            <tr>
+              <th>名称</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in list">
+              <td><a ng-href="#/hs/gym-detail/{{item.id}}">{{item.name}}</a></td>
+              <td>{{item.status}}</td>
+              <td></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="3">
+                <ul class="pagination"
+                    ng-show="!!list">
+                  <li ng-class="{'active': isPage(1)}">
+                    <a ng-href="#hs/gym-list/1"
+                       ng-if="!isPage(1)">首页</a>
+                    <span ng-if="isPage(1)">首页</span>
+                  </li>
+                  <li>
+                    <a ng-href="#hs/gym-list/{{currentPage - 1}}"
+                       ng-if="!isPage(1)">
+                      <span>&laquo;</span>
+                    </a>
+                    <span ng-if="isPage(1)">&laquo;</span>
+                  </li>
+                  <li ng-repeat="page in pages"
+                      ng-class="{'active': isPage(page)}">
+                    <a ng-href="#hs/gym-list/{{page}}"
+                       ng-click="loadPage(page)"
+                       ng-if="!isPage(page)">{{page}}</a>
+                    <span ng-if="isPage(page)">{{page}}</span>
+                  </li>
+                  <li>
+                    <a ng-href="#hs/gym-list/{{currentPage + 1}}"
+                       ng-if="!isPage(totalPage)">
+                      <span>&raquo;</span>
+                    </a>
+                    <span ng-if="isPage(totalPage)">&raquo;</span>
+                  </li>
+                  <li ng-class="{'active': isPage(totalPage)}">
+                    <a ng-href="#hs/gym-list/{{totalPage}}"
+                       ng-if="!isPage(totalPage)">末页</a>
+                    <span ng-if="isPage(totalPage)">末页</span>
+                  </li>
+                  <li>
+                    <span>{{currentPage + "/" + totalPage}}</span>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
-
-      <!--<div class="col-sm-6">-->
-      <!--<div class="panel panel-primary">-->
-      <!--<div class="panel-heading">-->
-      <!--<h4 class="panel-title">认证场馆列表</h4>-->
-      <!--</div>-->
-      <!--<div class="panel-body">-->
-      <!--其他信息-->
-      <!--</div>-->
-
-      <!--</div>-->
-      <!--</div>-->
     </div>
   </div>
 </div>

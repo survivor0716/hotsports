@@ -1,0 +1,79 @@
+<header ng-include="'views/include/header.html'"></header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-3 sidebar" ng-include="'views/include/sidebar.html'"></div>
+    <div class="col-md-10 col-md-offset-2 col-sm-9 col-sm-offset-3 main">
+      <div class="page-header">
+        <h3>提现申请</h3>
+      </div>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#/hs/todo/withdraw">提现申请</a></li>
+        <li role="presentation"><a href="#/hs/todo/withdrawed">完成提现</a></li>
+      </ul>
+      <div ng-include="'views/hs/withdraw-list.html'"></div>
+    </div>
+  </div>
+</div>
+<div class="modal handle-withdraw-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">审核申请提现</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-xs-6">账户姓名:</label>
+            <p class="form-control-static col-xs-6">{{currentAccountInfo.accountName}}</p>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-6">开户行:</label>
+            <p class="form-control-static col-xs-6">{{currentAccountInfo.accountBank}}</p>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-6">银行卡号:</label>
+            <p class="form-control-static col-xs-6">{{currentAccountInfo.accountNumber}}</p>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-6">银行Code:</label>
+            <p class="form-control-static col-xs-6">{{currentAccountInfo.bankCode}}</p>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-6">开户手机号:</label>
+            <p class="form-control-static col-xs-6">{{currentAccountInfo.contactPhone}}</p>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-6">账户类型:</label>
+            <p class="form-control-static col-xs-6">{{currentAccountInfo.type}}</p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target=".handle-withdraw-modal-confirm">审核</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal handle-withdraw-modal-confirm" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">确认审核</h4>
+      </div>
+      <div class="modal-body">
+        <p>是否确认审核该提现操作？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="handleWithdraw(currentWithdrawId)">确认</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ angular.module('hotsportsApp')
     //Note that Angular appends 'Provider' to then end of the provider name
     $routeProvider
       .when('/sm/withdraw-list', {
-        templateUrl : 'views/hs-todo-withdraw.html',
+        templateUrl : '../../views/hs/hs-todo-withdraw.html',
         controller  : 'SmwithdrawlistCtrl',
         controllerAs: 'smWithdrawList',
         resolve     : {
@@ -75,12 +75,12 @@ angular.module('hotsportsApp')
           currentPage,
           currentPage + 1
         ];
-      } else if (currentPage == 1 && totalPage > 1) {
+      } else if (currentPage === 1 && totalPage > 1) {
         return [
           currentPage,
           currentPage + 1
         ];
-      } else if (currentPage == totalPage && totalPage > 1) {
+      } else if (currentPage === totalPage && totalPage > 1) {
         return [
           currentPage - 1,
           currentPage
@@ -93,7 +93,7 @@ angular.module('hotsportsApp')
     };
 
     $scope.isPage = function (currentPage, num) {
-      return currentPage == num;
+      return currentPage === num;
     };
 
 

@@ -1,0 +1,31 @@
+<!--场馆管理员列表Panel-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">场馆管理员列表</h4>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover table-condensed">
+      <thead>
+      <tr>
+        <th>昵称</th>
+        <th>手机号</th>
+        <th>权限</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in superManagerData">
+        <td>{{item.nickName}}</td>
+        <td>{{item.phone}}</td>
+        <td>场馆管理员</td>
+      </tr>
+      <tr ng-repeat="item in cashierData">
+        <td>{{item.nickName}}</td>
+        <td>{{item.phone}}</td>
+        <td>收银员</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      </tfoot>
+    </table>
+  </div>
+</div>
