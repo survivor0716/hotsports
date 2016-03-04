@@ -62,4 +62,10 @@ angular.module('hotsportsApp')
       return $http.post(ServiceConfig.hs_gym_bindSuperManager, params, {'withCredentials': true})
         .then(PromiseCallback.successCallback, PromiseCallback.failureCallback);
     };
+
+    this.gymDetail = function (params) {
+      params = params || {};
+      return $http.post(ServiceConfig.hs_gym_detail, params, {'withCredentials': true})
+        .then(PromiseCallback.successCallback, PromiseCallback.failureCallback);
+    };
   });

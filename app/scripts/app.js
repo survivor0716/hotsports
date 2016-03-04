@@ -259,32 +259,6 @@ angular
           'auth': authPromise(USER_ROLES.hotsportsManager)
         }
       })
-      .when('/hs/gym-detail/:gymid', {
-        templateUrl : 'views/hs-gym-detail.html',
-        controller  : 'HsgymdetailCtrl',
-        controllerAs: 'hsGymDetail',
-        resolve     : {
-          'auth'      : authPromise(USER_ROLES.hotsportsManager),
-          'detailData': ['$log', '$http', '$q', '$route', 'ServiceConfig', function ($log, $http, $q, $route, ServiceConfig) {
-            return $http.post(ServiceConfig.hs_gym_detail, {gid: $route.current.params.gymid}, {'withCredentials': true})
-              .then(function (response) {
-                if (typeof response.data === 'object') {
-                  var data = response.data;
-                  if (data.result) {
-                    return $q.resolve(data.data);
-                  } else {
-                    return $q.reject(data.errMsg);
-                  }
-                } else {
-                  return $q.reject(response.data);
-                }
-              }, function (response) {
-                return $q.reject(response.data);
-              });
-
-          }]
-        }
-      })
       .otherwise({
         redirectTo: '/'
       });

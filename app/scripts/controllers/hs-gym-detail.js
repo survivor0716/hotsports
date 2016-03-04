@@ -8,6 +8,29 @@
  * Controller of the hotsportsApp
  */
 angular.module('hotsportsApp')
+  .config(['$routeProvider', 'USER_ROLES', 'RouteAuthResolveProvider', function ($routeProvider, USER_ROLES, RouteAuthResolveProvider) {
+    //Note that Angular appends 'Provider' to then end of the provider name
+    $routeProvider
+      .when('/hs/gym-detail/:gymid', {
+        templateUrl : 'views/hs-gym-detail.html',
+        controller  : 'HsgymdetailCtrl',
+        controllerAs: 'hsGymDetail',
+        resolve     : {
+          'auth'      : RouteAuthResolveProvider.auth([USER_ROLES.hotsportsManager]),
+          'detailData': ['$q', '$route', 'HotSportsManagerService', function ($q, $route, HotSportsManagerService) {
+            var params = {gid: $route.current.params.gymid};
+            return HotSportsManagerService.gymDetail(params)
+              .then(function (data) {
+                return $q.resolve(data);
+              }, function (errMsg) {
+                //TODO: $routeChangeError event
+                return $q.reject(errMsg);
+              });
+
+          }]
+        }
+      });
+  }])
   .controller('HsgymdetailCtrl', function ($log, $window, $scope, $http, $q, $route, $routeParams, ServiceConfig, HotSportsManagerService, PromiseCallback, detailData) {
     $log.debug('场馆详情:', detailData);
     $scope.gymData = detailData.gym;

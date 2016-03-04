@@ -1,10 +1,19 @@
 <!--场馆信息Panel-->
 <div class="panel panel-default">
   <!--<div class="panel-heading">-->
-    <!--<h4 class="panel-title">场馆信息</h4>-->
+  <!--<h4 class="panel-title">场馆信息</h4>-->
   <!--</div>-->
+  <!--TODO: 样式调整-->
   <div class="panel-body">
     <p>场馆id：{{gymData.id}}</p>
+
+    <p>场馆二维码：</p>
+
+    <div class="row">
+      <div class="col-md-1 col-xs-2">
+        <img ng-src="{{gymData.qrcode}}" alt="" height="100px"/>
+      </div>
+    </div>
 
     <p>场馆名称：{{gymData.name}}</p>
 
@@ -15,17 +24,17 @@
     <p>场馆头图：</p>
 
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-md-1 col-xs-2">
         <img ng-src="{{gymData.headImg}}" alt="" height="100px"/>
       </div>
     </div>
     <p>场馆类型：</p>
 
     <div class="row">
-      <div class="col-xs-2 text-center" ng-repeat="item in gymType">
+      <div class="col-md-1 col-xs-2 text-center" ng-repeat="item in gymType">
         <img ng-src="{{item.imgSelected}}" alt="" width="100%">
 
-        <p>{{type.name}}</p>
+        <p>{{item.name}}</p>
       </div>
     </div>
   </div>
