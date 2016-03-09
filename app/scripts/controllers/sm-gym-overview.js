@@ -83,7 +83,7 @@ angular.module('hotsportsApp')
     $scope.addCashierParams = {
       uid: null,
       nickName: null,
-      sex: null
+      sex: 0
     };
 
     $scope.setCurrentCashier = function (currentCashier) {
