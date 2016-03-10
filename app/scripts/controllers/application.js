@@ -25,8 +25,8 @@ angular.module('hotsportsApp')
       $location.url('login');
     };
 
-    if ($window.sessionStorage.userInfo) {
-      $scope.currentUser = JSON.parse($window.sessionStorage.userInfo);
+    if ($window.localStorage.userInfo) {
+      $scope.currentUser = JSON.parse($window.localStorage.userInfo);
     }
 
     $scope.setCurrentUser = function (user) {

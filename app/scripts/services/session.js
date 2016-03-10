@@ -19,7 +19,7 @@ angular.module('hotsportsApp')
       this.userId = userInfo.uid;
       this.userNickName = userInfo.nickName;
       this.userRole = userInfo.role;
-      $window.sessionStorage.userInfo = JSON.stringify(userInfo);
+      $window.localStorage.userInfo = JSON.stringify(userInfo);
       $log.debug('用户Session已创建');
     };
 
@@ -31,7 +31,7 @@ angular.module('hotsportsApp')
       this.userId = null;
       this.userNickName = null;
       this.userRole = null;
-      $window.sessionStorage.removeItem("userInfo");
+      $window.localStorage.removeItem("userInfo");
       $log.debug('用户Session已清除');
     };
 
@@ -40,14 +40,14 @@ angular.module('hotsportsApp')
      * @description 初始化用户信息，判断是否已有Session
      */
     this.init = function () {
-      if ($window.sessionStorage.userInfo) {
-        var userInfo = JSON.parse($window.sessionStorage.userInfo);
-        $log.debug('sessionStorage 已有信息: ', userInfo);
+      if ($window.localStorage.userInfo) {
+        var userInfo = JSON.parse($window.localStorage.userInfo);
+        $log.debug('localStorage 已有信息: ', userInfo);
         self.userId = userInfo.uid;
         self.userNickName = userInfo.nickName;
         self.userRole = userInfo.role;
       } else {
-        $log.debug('sessionStorage 没有用户登录信息');
+        $log.debug('localStorage 没有用户登录信息');
       }
     };
 
