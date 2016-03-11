@@ -29,7 +29,7 @@ angular.module('hotsportsApp')
 
           }],
           'gymOrderData'   : ['$q', '$route', 'SuperManagerService', function ($q, $route, SuperManagerService) {
-            var params = {gid: $route.current.params.gymid, row: 10};
+            var params = {gid: $route.current.params.gymid, row: 10, trade_status: 'TRADE_FINISHED'};
             return SuperManagerService.gymOrder(params)
               .then(function (data) {
                 return $q.resolve(data);
