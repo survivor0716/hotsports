@@ -195,30 +195,7 @@ angular
         resolve     : {
           auth: authPromise(USER_ROLES.hotsportsManager)
         }
-        //resolve: {
-        //  gymData: function ($log, $q, $route, GymService, QueryFilterService) {
-        //    $log.debug('In resolve: ', $route.current.params);
-        //    QueryFilterService.setQueryFilter({page: $route.current.params.page || 1, row: 50, status: 'ok'});
-        //
-        //    var deferred = $q.defer();
-        //    GymService.getGymList(QueryFilterService.getQueryFilter())
-        //      .then(function (data) {
-        //        deferred.resolve(data);
-        //      }, function (errMsg) {
-        //        return deferred.reject(errMsg);
-        //      });
-        //    return deferred.promise;
-        //  }
-        //}
       })
-      //.when('/coach/login', {
-      //  templateUrl: 'views/coach-login.html',
-      //  controller: 'CoachLoginCtrl',
-      //  controllerAs: 'coachLogin',
-      //  resolve: {
-      //    auth: authPromise()
-      //  }
-      //})
       .when('/manager/qrcode', {
         templateUrl : 'views/manager-qrcode.html',
         controller  : 'ManagerQrcodeCtrl',
@@ -239,22 +216,6 @@ angular
         templateUrl : 'views/gym-detail.html',
         controller  : 'GymdetailCtrl',
         controllerAs: 'gymDetail',
-        resolve     : {
-          'auth': authPromise(USER_ROLES.hotsportsManager)
-        }
-      })
-      .when('/hs/gym/page/:page?', {
-        templateUrl : 'views/hs-gym-list.html',
-        controller  : 'HsgymlistCtrl',
-        controllerAs: 'hsGymList',
-        resolve     : {
-          'auth': authPromise(USER_ROLES.hotsportsManager)
-        }
-      })
-      .when('/hs/gym-post', {
-        templateUrl : 'views/hs-gym-create.html',
-        controller  : 'HsgymcreateCtrl',
-        controllerAs: 'hsGymCreate',
         resolve     : {
           'auth': authPromise(USER_ROLES.hotsportsManager)
         }

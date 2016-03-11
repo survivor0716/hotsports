@@ -8,6 +8,18 @@
  * Controller of the hotsportsApp
  */
 angular.module('hotsportsApp')
+  .config(['$routeProvider', 'USER_ROLES', 'RouteAuthResolveProvider', function ($routeProvider, USER_ROLES, RouteAuthResolveProvider) {
+    //Note that Angular appends 'Provider' to then end of the provider name
+    $routeProvider
+      .when('/hs/gym-post', {
+        templateUrl : 'views/hs-gym-create.html',
+        controller  : 'HsgymcreateCtrl',
+        controllerAs: 'hsGymCreate',
+        resolve     : {
+          'auth': RouteAuthResolveProvider.auth([USER_ROLES.hotsportsManager])
+        }
+      });
+  }])
   .controller('HsgymcreateCtrl', function ($log, $window, $scope, $route, HotSportsManagerService) {
     $scope.setCurrentPath('#/hs/gym-post');
 

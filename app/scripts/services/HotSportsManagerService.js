@@ -41,7 +41,7 @@ angular.module('hotsportsApp')
 
     this.setWithdraw = function (params) {
       params = params || {};
-      return $http.post(ServiceConfig.hs_gym_setWithdraw, params, {'withCredentials': true})
+      return $http.post(ServiceConfig.hs_gym_withdraw_setting_put, params, {'withCredentials': true})
         .then(PromiseCallback.successCallback, PromiseCallback.failureCallback);
     };
 
