@@ -243,7 +243,7 @@ angular
           'auth': authPromise(USER_ROLES.hotsportsManager)
         }
       })
-      .when('/hs/gym/:page?', {
+      .when('/hs/gym/page/:page?', {
         templateUrl : 'views/hs-gym-list.html',
         controller  : 'HsgymlistCtrl',
         controllerAs: 'hsGymList',
@@ -251,7 +251,7 @@ angular
           'auth': authPromise(USER_ROLES.hotsportsManager)
         }
       })
-      .when('/hs/gym-create', {
+      .when('/hs/gym-post', {
         templateUrl : 'views/hs-gym-create.html',
         controller  : 'HsgymcreateCtrl',
         controllerAs: 'hsGymCreate',

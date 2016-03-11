@@ -11,7 +11,7 @@ angular.module('hotsportsApp')
   .config(['$routeProvider', 'USER_ROLES', 'RouteAuthResolveProvider', function ($routeProvider, USER_ROLES, RouteAuthResolveProvider) {
     //Note that Angular appends 'Provider' to then end of the provider name
     $routeProvider
-      .when('/hs/gym-detail/:gymid', {
+      .when('/hs/gym/:gymid', {
         templateUrl : 'views/hs-gym-detail.html',
         controller  : 'HsgymdetailCtrl',
         controllerAs: 'hsGymDetail',
@@ -32,6 +32,7 @@ angular.module('hotsportsApp')
       });
   }])
   .controller('HsgymdetailCtrl', function ($log, $window, $scope, $http, $q, $route, $routeParams, ServiceConfig, HotSportsManagerService, PromiseCallback, detailData) {
+    $scope.setCurrentPath('#/hs/gym');
     $log.debug('场馆详情:', detailData);
     $scope.gymData = detailData.gym;
     $scope.gymType = detailData.type;

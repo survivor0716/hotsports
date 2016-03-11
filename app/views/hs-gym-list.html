@@ -21,7 +21,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in list">
-              <td><a ng-href="#/hs/gym-detail/{{item.id}}">{{item.name}}</a></td>
+              <td><a ng-href="#/hs/gym/{{item.id}}">{{item.name}}</a></td>
               <td>{{item.status}}</td>
               <td></td>
             </tr>
@@ -32,12 +32,12 @@
                 <ul class="pagination"
                     ng-show="!!list">
                   <li ng-class="{'active': isPage(1)}">
-                    <a ng-href="#hs/gym-list/1"
+                    <a ng-href="#hs/gym/page/1"
                        ng-if="!isPage(1)">首页</a>
                     <span ng-if="isPage(1)">首页</span>
                   </li>
                   <li>
-                    <a ng-href="#hs/gym-list/{{currentPage - 1}}"
+                    <a ng-href="#hs/gym/page/{{currentPage - 1}}"
                        ng-if="!isPage(1)">
                       <span>&laquo;</span>
                     </a>
@@ -45,20 +45,20 @@
                   </li>
                   <li ng-repeat="page in pages"
                       ng-class="{'active': isPage(page)}">
-                    <a ng-href="#hs/gym-list/{{page}}"
+                    <a ng-href="#hs/gym/page/{{page}}"
                        ng-click="loadPage(page)"
                        ng-if="!isPage(page)">{{page}}</a>
                     <span ng-if="isPage(page)">{{page}}</span>
                   </li>
                   <li>
-                    <a ng-href="#hs/gym-list/{{currentPage + 1}}"
+                    <a ng-href="#hs/gym/page/{{currentPage + 1}}"
                        ng-if="!isPage(totalPage)">
                       <span>&raquo;</span>
                     </a>
                     <span ng-if="isPage(totalPage)">&raquo;</span>
                   </li>
                   <li ng-class="{'active': isPage(totalPage)}">
-                    <a ng-href="#hs/gym-list/{{totalPage}}"
+                    <a ng-href="#hs/gym/page/{{totalPage}}"
                        ng-if="!isPage(totalPage)">末页</a>
                     <span ng-if="isPage(totalPage)">末页</span>
                   </li>

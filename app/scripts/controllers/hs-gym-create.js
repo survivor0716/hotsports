@@ -9,7 +9,7 @@
  */
 angular.module('hotsportsApp')
   .controller('HsgymcreateCtrl', function ($log, $window, $scope, $route, HotSportsManagerService) {
-    $scope.setCurrentPath('#/hs/gym-create');
+    $scope.setCurrentPath('#/hs/gym-post');
 
     $scope.typeList = [];
 
