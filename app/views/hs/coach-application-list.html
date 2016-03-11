@@ -15,7 +15,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="data in list">
+      <tr ng-repeat="data in coach">
         <td class="text-center">{{data.createTime}}</td>
         <td class="text-right">{{data.name}}</td>
         <td class="text-right">{{data.phone}}</td>
@@ -28,41 +28,25 @@
       <tr>
         <td colspan="7">
           <div class="col-sm-12">
-            <ul class="pagination"
-                ng-show="!!totalPage">
+            <ul class="pagination" ng-show="!!totalPage">
               <li ng-class="{'active': isPage(1)}">
-                <a ng-href=""
-                   ng-if="!isPage(1)"
-                   ng-click="loadPage(1)">首页</a>
+                <a ng-href="#/hs/todo/coach/page/1" ng-if="!isPage(1)">首页</a>
                 <span ng-if="isPage(1)">首页</span>
               </li>
               <li>
-                <a ng-href=""
-                   ng-if="!isPage(1)"
-                   ng-click="loadPage(currentPage - 1)">
-                  <span>&laquo;</span>
-                </a>
+                <a ng-href="#/hs/todo/coach/page/{{currentPage - 1}}" ng-if="!isPage(1)"><span>&laquo;</span></a>
                 <span ng-if="isPage(1)">&laquo;</span>
               </li>
-              <li ng-repeat="page in pages"
-                  ng-class="{'active': isPage(page)}">
-                <a ng-href=""
-                   ng-click="loadPage(page)"
-                   ng-if="!isPage(page)">{{page}}</a>
+              <li ng-repeat="page in pages" ng-class="{'active': isPage(page)}">
+                <a ng-href="#/hs/todo/coach/page/{{page}}" ng-if="!isPage(page)">{{page}}</a>
                 <span ng-if="isPage(page)">{{page}}</span>
               </li>
               <li>
-                <a ng-href=""
-                   ng-if="!isPage(totalPage)"
-                   ng-click="loadPage(currentPage + 1)">
-                  <span>&raquo;</span>
-                </a>
+                <a ng-href="#/hs/todo/coach/page/{{currentPage + 1}}" ng-if="!isPage(totalPage)"><span>&raquo;</span></a>
                 <span ng-if="isPage(totalPage)">&raquo;</span>
               </li>
               <li ng-class="{'active': isPage(totalPage)}">
-                <a ng-href=""
-                   ng-if="!isPage(totalPage)"
-                   ng-click="loadPage(totalPage)">末页</a>
+                <a ng-href="#/hs/todo/coach/page/{{totalPage}}" ng-if="!isPage(totalPage)">末页</a>
                 <span ng-if="isPage(totalPage)">末页</span>
               </li>
               <li>

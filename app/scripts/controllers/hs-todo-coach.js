@@ -11,7 +11,7 @@ angular.module('hotsportsApp')
   .config(['$routeProvider', 'USER_ROLES', 'RouteAuthResolveProvider', function ($routeProvider, USER_ROLES, RouteAuthResolveProvider) {
     //Note that Angular appends 'Provider' to then end of the provider name
     $routeProvider
-      .when('/hs/todo/coach', {
+      .when('/hs/todo/coach/page/:page?', {
         templateUrl : 'views/hs-todo-coach.html',
         controller  : 'HstodocoachCtrl',
         controllerAs: 'hsTodoCoach',
@@ -29,21 +29,28 @@ angular.module('hotsportsApp')
         }
       });
   }])
-  .controller('HstodocoachCtrl', function ($log, $window, $scope, $route, HotSportsManagerService, PromiseCallback, QueryFilterService) {
+  .controller('HstodocoachCtrl', function ($log, $window, $scope, $routeParams, HotSportsManagerService, QueryFilterService) {
     $scope.setCurrentPath('#/hs/todo/coach');
 
-    $scope.currentPage = QueryFilterService.getQueryFilter().page || 1;
-    $scope.totalPage = null;
-    $scope.row = 10;
+    var queryParams = QueryFilterService.getQueryParams('HstodocoachCtrl');
+    if(queryParams) {
+      queryParams.page = $routeParams.page;
+      $scope.row = queryParams.row;
+    } else {
+      $scope.currentPage = 1;
+      $scope.row = 1;
+      QueryFilterService.setQueryParams('HstodocoachCtrl', {status: 'NOT_VERIFY', page: $scope.currentPage, row: $scope.row});
+      queryParams = QueryFilterService.getQueryParams('HstodocoachCtrl');
+    }
+
     $scope.pages = [];
 
-    $scope.loadPage = function (page) {
-      QueryFilterService.setQueryFilter({status: 'NOT_VERIFY', page: page}, 'HstodocoachCtrl');
-      HotSportsManagerService.coach(QueryFilterService.getQueryFilter())
+
+    $scope.loadPage = function () {
+      HotSportsManagerService.coach(queryParams)
         .then(function (data) {
           $log.debug('获取教练申请列表成功', data);
-          $scope.list = data.coachList;
-          $scope.currentPage = QueryFilterService.getQueryFilter().page;
+          $scope.coach = data.coachList;
           $scope.totalPage = Math.ceil(data.total / $scope.row);
           createPageLinks();
         }, function (errMsg) {
@@ -52,7 +59,7 @@ angular.module('hotsportsApp')
         });
     };
 
-    $scope.loadPage($scope.currentPage);
+    $scope.loadPage();
 
     var createPageLinks = function () {
       //生成数字链接
