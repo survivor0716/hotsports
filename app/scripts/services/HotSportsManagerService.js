@@ -17,7 +17,7 @@ angular.module('hotsportsApp')
 
     this.addGym = function (params) {
       params = params || {};
-      return $http.post(ServiceConfig.hs_gym_add, params, {'withCredentials': true})
+      return $http.post(ServiceConfig.hs_gym_post, params, {'withCredentials': true})
         .then(PromiseCallback.successCallback, PromiseCallback.failureCallback);
     };
 

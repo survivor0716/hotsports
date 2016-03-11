@@ -9,7 +9,7 @@
  */
 angular.module('hotsportsApp')
   .controller('HsgymlistCtrl', function ($log, $window, $scope, $http, $q, $routeParams, ServiceConfig, PromiseCallback, QueryFilterService) {
-    $scope.setCurrentPath('#/hs/gym-list');
+    $scope.setCurrentPath('#/hs/gym');
 
     $scope.currentPage = parseInt($routeParams.page) || 1;
     $scope.totalPage = null;
@@ -18,7 +18,7 @@ angular.module('hotsportsApp')
     //TODO: resolve
     var loadData = function () {
       QueryFilterService.setQueryFilter({page: $scope.currentPage}, 'HsgymlistCtrl');
-      $http.post(ServiceConfig.hs_gym_list, QueryFilterService.getQueryFilter(), {'withCredentials': true})
+      $http.post(ServiceConfig.hs_gym_get, QueryFilterService.getQueryFilter(), {'withCredentials': true})
         .then(PromiseCallback.successCallback, PromiseCallback.failureCallback)
         .then(function (data) {
           $log.debug('获取场馆列表成功', data);
