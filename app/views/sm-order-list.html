@@ -55,7 +55,7 @@
                 <tbody>
                 <tr ng-repeat="data in list">
                   <td class="text-center">{{data.createTime}}</td>
-                  <td class="text-center">【{{data.cashierNickName}}】 {{data.cashierPhone}}</td>
+                  <td class="text-center">【{{data.cashierNickName ? data.cashierNickName : '门店支付'}}】 {{data.cashierPhone}}</td>
                   <td class="text-right">{{data.out_trade_no}}</td>
                   <td class="text-right">{{data.total_fee | currency}}</td>
                   <td class="text-center">{{data.trade_status}}</td>
