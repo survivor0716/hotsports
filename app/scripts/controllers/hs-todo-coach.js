@@ -29,33 +29,34 @@ angular.module('hotsportsApp')
         }
       });
   }])
-  .controller('HstodocoachCtrl', function ($log, $window, $scope, $routeParams, HotSportsManagerService, ServiceConfig, QueryFilterService, getListDataService) {
+  .controller('HstodocoachCtrl', function ($log, $window, $scope, $routeParams, ServiceConfig, getListDataService) {
     $scope.setCurrentPath('#/hs/todo/coach');
 
+    $scope.paginationConf = {
+      currentPage: parseInt($routeParams.page) || 1,
+      totalPage  : null,
+      row        : 1,
+      pages      : [],
+      isPage     : function (num) {
+        return this.currentPage == num;
+      }
+    };
     $scope.listData = null;
-    $scope.currentPage = parseInt($routeParams.page) || 1;
-    $scope.totalPage = null;
-    $scope.row = 1;
-    $scope.pages = [];
     var queryParams = {
       status: 'NOT_VERIFY',
-      page  : $scope.currentPage,
-      row   : $scope.row
+      page  : $scope.paginationConf.currentPage,
+      row   : $scope.paginationConf.row
     };
 
     getListDataService.post(ServiceConfig.hs_todo_coach, queryParams)
       .then(function (data) {
         $log.debug('获取教练申请列表成功', data);
         $scope.listData = data.coachList;
-        $scope.totalPage = Math.ceil(data.total / $scope.row);
-        $scope.pages = getListDataService.createPageLinks($scope.currentPage, $scope.totalPage);
+        $scope.paginationConf.totalPage = Math.ceil(data.total / $scope.paginationConf.row);
+        $scope.paginationConf.pages = getListDataService.createPageLinks($scope.paginationConf.currentPage, $scope.paginationConf.totalPage);
       }, function (errMsg) {
         $log.debug('获取教练申请列表失败', errMsg);
         $window.alert(errMsg);
       });
-
-    $scope.isPage = function (num) {
-      return $scope.currentPage == num;
-    };
 
   });

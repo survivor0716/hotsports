@@ -1,0 +1,27 @@
+<div class="col-sm-12">
+  <ul class="pagination" ng-show="!!conf.totalPage">
+    <li ng-class="{'active': conf.isPage(1)}">
+      <a ng-href="#/hs/todo/coach/page/1" ng-if="!conf.isPage(1)">首页</a>
+      <span ng-if="conf.isPage(1)">首页</span>
+    </li>
+    <li>
+      <a ng-href="#/hs/todo/coach/page/{{conf.currentPage - 1}}" ng-if="!conf.isPage(1)"><span>&laquo;</span></a>
+      <span ng-if="conf.isPage(1)">&laquo;</span>
+    </li>
+    <li ng-repeat="page in conf.pages" ng-class="{'active': conf.isPage(page)}">
+      <a ng-href="#/hs/todo/coach/page/{{page}}" ng-if="!conf.isPage(page)">{{page}}</a>
+      <span ng-if="conf.isPage(page)">{{page}}</span>
+    </li>
+    <li>
+      <a ng-href="#/hs/todo/coach/page/{{conf.currentPage + 1}}" ng-if="!conf.isPage(conf.totalPage)"><span>&raquo;</span></a>
+      <span ng-if="conf.isPage(conf.totalPage)">&raquo;</span>
+    </li>
+    <li ng-class="{'active': conf.isPage(conf.totalPage)}">
+      <a ng-href="#/hs/todo/coach/page/{{conf.totalPage}}" ng-if="!conf.isPage(conf.totalPage)">末页</a>
+      <span ng-if="conf.isPage(conf.totalPage)">末页</span>
+    </li>
+    <li>
+      <span>{{conf.currentPage + "/" + conf.totalPage}}</span>
+    </li>
+  </ul>
+</div>

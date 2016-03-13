@@ -27,33 +27,7 @@
       <tfoot>
       <tr>
         <td colspan="7">
-          <div class="col-sm-12">
-            <ul class="pagination" ng-show="!!totalPage">
-              <li ng-class="{'active': isPage(1)}">
-                <a ng-href="#/hs/todo/coach/page/1" ng-if="!isPage(1)">首页</a>
-                <span ng-if="isPage(1)">首页</span>
-              </li>
-              <li>
-                <a ng-href="#/hs/todo/coach/page/{{currentPage - 1}}" ng-if="!isPage(1)"><span>&laquo;</span></a>
-                <span ng-if="isPage(1)">&laquo;</span>
-              </li>
-              <li ng-repeat="page in pages" ng-class="{'active': isPage(page)}">
-                <a ng-href="#/hs/todo/coach/page/{{page}}" ng-if="!isPage(page)">{{page}}</a>
-                <span ng-if="isPage(page)">{{page}}</span>
-              </li>
-              <li>
-                <a ng-href="#/hs/todo/coach/page/{{currentPage + 1}}" ng-if="!isPage(totalPage)"><span>&raquo;</span></a>
-                <span ng-if="isPage(totalPage)">&raquo;</span>
-              </li>
-              <li ng-class="{'active': isPage(totalPage)}">
-                <a ng-href="#/hs/todo/coach/page/{{totalPage}}" ng-if="!isPage(totalPage)">末页</a>
-                <span ng-if="isPage(totalPage)">末页</span>
-              </li>
-              <li>
-                <span>{{currentPage + "/" + totalPage}}</span>
-              </li>
-            </ul>
-          </div>
+          <my-pagination conf="paginationConf"></my-pagination>
         </td>
       </tr>
       </tfoot>
