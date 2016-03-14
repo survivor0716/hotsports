@@ -1,41 +1,121 @@
 <!--场馆信息Panel-->
 <div class="panel panel-default">
   <!--<div class="panel-heading">-->
-  <!--<h4 class="panel-title">场馆信息</h4>-->
+  <!--<h4 class="panel-title">填写场馆信息</h4>-->
   <!--</div>-->
-  <!--TODO: 样式调整-->
   <div class="panel-body">
-    <p>场馆id：{{gymData.id}}</p>
+    <form class="form-horizontal" ng-submit="submit()">
+      <div class="form-group" ng-if="gymData.id">
+        <label class="col-sm-2 control-label">场馆id:</label>
 
-    <p>场馆二维码：</p>
-
-    <div class="row">
-      <div class="col-md-1 col-xs-2">
-        <img ng-src="{{gymData.qrcode}}" alt="" height="100px"/>
+        <div class="col-sm-2">
+          <p class="form-control-static">{{gymData.id}}</p>
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-default" ng-click="showEditPanel()">编辑</button>
+        </div>
       </div>
-    </div>
+      <div class="form-group" ng-if="gymData.id">
+        <label class="col-sm-2 control-label">场馆二维码:</label>
 
-    <p>场馆名称：{{gymData.name}}</p>
-
-    <p>场馆地址：{{gymData.province + gymData.city + gymData.district + gymData.addDetail}}</p>
-
-    <p>场馆电话：{{gymData.tel}}</p>
-
-    <p>场馆头图：</p>
-
-    <div class="row">
-      <div class="col-md-1 col-xs-2">
-        <img ng-src="{{gymData.headImg}}" alt="" height="100px"/>
+        <div class="col-sm-2">
+          <p class="form-control-static"><img ng-src="{{gymData.qrcode}}" alt="" width="100%"/></p>
+        </div>
       </div>
-    </div>
-    <p>场馆类型：</p>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">场馆名称:</label>
 
-    <div class="row">
-      <div class="col-md-1 col-xs-2 text-center" ng-repeat="item in gymType">
-        <img ng-src="{{item.imgSelected}}" alt="" width="100%">
-
-        <p>{{item.name}}</p>
+        <div class="col-sm-4">
+          <p class="form-control-static">{{gymData.name}}</p>
+        </div>
       </div>
-    </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+
+        <div class="col-sm-2">
+          <img ng-src="{{gymData.headImg}}" alt="" width="100%"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">场馆电话:</label>
+
+        <div class="col-sm-4">
+          <p class="form-control-static">{{gymData.tel}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">省市:</label>
+
+        <div class="col-sm-4">
+          <p class="form-control-static">{{gymData.province}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">城市:</label>
+
+        <div class="col-sm-4">
+          <p class="form-control-static">{{gymData.city}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">区县:</label>
+
+        <div class="col-sm-4">
+          <p class="form-control-static">{{gymData.district}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">街道:</label>
+
+        <div class="col-sm-4">
+          <p class="form-control-static">{{gymData.street}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">场馆地址:</label>
+
+        <div class="col-sm-4">
+          <p class="form-control-static">{{gymData.addDetail}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">场馆坐标:</label>
+
+        <div class="col-sm-4 row">
+          <label class="col-sm-1 control-label">lat:</label>
+
+          <div class="col-sm-10">
+            <p class="form-control-static">{{gymData.lat}}</p>
+          </div>
+        </div>
+        <div class="col-sm-4 row">
+          <label class="col-sm-1 control-label">lng:</label>
+
+          <div class="col-sm-10">
+            <p class="form-control-static">{{gymData.lng}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">自定义链接:</label>
+
+        <div class="col-sm-4">
+          <p class="form-control-static">{{gymData.detailUrl}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">场馆类型:</label>
+
+        <div class="col-sm-10">
+          <div class="row">
+            <div class="text-center" style="width: 80px; float: left; padding: 0 10px" ng-repeat="type in gymType track by $index">
+              <img ng-src="{{type.imgSelected}}" alt="" width="100%">
+
+              <p>{{type.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

@@ -21,6 +21,12 @@ angular.module('hotsportsApp')
         .then(PromiseCallback.successCallback, PromiseCallback.failureCallback);
     };
 
+    this.editGym = function (params) {
+      params = params || {};
+      return $http.post(ServiceConfig.hs_gym_put, params, {'withCredentials': true})
+        .then(PromiseCallback.successCallback, PromiseCallback.failureCallback);
+    };
+
     this.withdraw = function (params) {
       params = params || {};
       return $http.post(ServiceConfig.hs_todo_withdraw, params, {'withCredentials': true})

@@ -42,8 +42,9 @@ angular.module('hotsportsApp')
 
     //默认参数
     $scope.gym = {
-      withdrawCount: parseInt($scope.gymData.withdrawalCount),
-      withdrawLimit: parseInt($scope.gymData.withdrawalLimit)
+      withdrawCount      : parseInt($scope.gymData.withdrawalCount),
+      withdrawLimit      : parseInt($scope.gymData.withdrawalLimit),
+      showEditPanelStatus: false
     };
     $scope.sm = {
       phone     : null,
@@ -63,10 +64,61 @@ angular.module('hotsportsApp')
 
     $scope.showNext = false;
     $scope.tab = 1;
+    $scope.selectedType = [];
+    for (var i in $scope.gymType)
+      $scope.selectedType.push($scope.gymType[i].id);
 
     //选择tab页
     $scope.setTab = function (tab) {
       $scope.tab = tab;
+      $scope.gym.showEditPanelStatus = false;
+    };
+
+    HotSportsManagerService.sportType()
+      .then(function (data) {
+        $log.debug('获取场馆类型列表成功', data);
+        $scope.typeList = data;
+        $log.debug($scope.selectedType);
+        for (var i in $scope.typeList) {
+          if ($scope.selectedType.indexOf($scope.typeList[i].id) !== -1) {
+            $scope.typeList[i].currentSrc = $scope.typeList[i].imgSelected;
+          } else {
+            $scope.typeList[i].currentSrc = $scope.typeList[i].imgUnSelected;
+          }
+        }
+      }, function (errMsg) {
+        $log.debug('获取场馆类型列表失败', errMsg);
+        $window.alert(errMsg);
+      });
+
+    //修改场馆信息
+    $scope.submit = function () {
+      $scope.disableSubmitBtn = true;
+      var params = {
+        id       : $scope.gymData.id,
+        name     : $scope.gymData.name,
+        tel      : $scope.gymData.tel,
+        province : $scope.gymData.province,
+        city     : $scope.gymData.city,
+        district : $scope.gymData.district,
+        street   : $scope.gymData.street,
+        addDetail: $scope.gymData.addDetail,
+        lat      : $scope.gymData.lat,
+        lng      : $scope.gymData.lng,
+        sportType: $scope.selectedType,
+        detailUrl: $scope.gymData.detailUrl
+      };
+      $log.debug('修改场馆请求参数', params);
+      HotSportsManagerService.editGym(params)
+        .then(function (data) {
+          $log.debug('修改场馆成功', data);
+          $window.alert('修改场馆成功');
+          $route.reload();
+        }, function (errMsg) {
+          $log.debug('修改场馆失败', errMsg);
+          $window.alert(errMsg);
+          $scope.disableSubmitBtn = false;
+        });
     };
 
     //验证欲添加场馆管理员是否存在
@@ -193,4 +245,24 @@ angular.module('hotsportsApp')
           $window.alert(errMsg);
         });
     };
+
+    $scope.showEditPanel = function () {
+      $scope.gym.showEditPanelStatus = true;
+    };
+
+    $scope.hideEditPanel = function () {
+      $scope.gym.showEditPanelStatus = false;
+    };
+
+    $scope.toggleImage = function (type) {
+      type.currentSrc = type.currentSrc === type.imgUnSelected ? type.imgSelected : type.imgUnSelected;
+
+      if ($scope.selectedType.indexOf(type.id) === -1) {
+        $scope.selectedType.push(type.id);
+      } else {
+        $scope.selectedType.splice($scope.selectedType.indexOf(type.id), 1);
+      }
+      $log.debug($scope.selectedType);
+    };
+
   });

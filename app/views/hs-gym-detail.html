@@ -16,7 +16,8 @@
         <li role="presentation" ng-class="{active: tab === 3}" ng-click="setTab(3)"><a href="">账户信息</a></li>
       </ul>
       <!--Panels: start-->
-      <div ng-include="'views/hs/gym-info-panel.html'" ng-if="tab === 1"></div>
+      <div ng-include="'views/hs/gym-info-panel.html'" ng-if="tab === 1" ng-hide="gym.showEditPanelStatus"></div>
+      <div ng-include="'views/gym-input.html'" ng-show="gym.showEditPanelStatus"></div>
       <div ng-include="'views/hs/gym-manager-list.html'" ng-if="tab === 2"></div>
       <div ng-include="'views/hs/gym-manager-add-panel.html'" ng-if="tab === 2"></div>
       <div ng-include="'views/hs/gym-account-info-panel.html'" ng-if="tab === 3"></div>

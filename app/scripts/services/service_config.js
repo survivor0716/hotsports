@@ -44,6 +44,7 @@ angular.module('hotsportsApp')
 
     hs_gym_get                 : SERVER_BASE_URL2_PHP + '/HGym',
     hs_gym_post                : SERVER_BASE_URL2_PHP + '/HGym/addGym',
+    hs_gym_put                 : SERVER_BASE_URL2_PHP + '/HGym/modifyGym',
     hs_gym_detail              : SERVER_BASE_URL2_PHP + '/HGym/gymDetail',
     hs_gym_withdraw_setting_put: SERVER_BASE_URL2_PHP + '/HGym/setWithdrawal',
 
