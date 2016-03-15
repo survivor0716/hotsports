@@ -12,12 +12,13 @@ angular.module('hotsportsApp')
     return {
       'responseError': function (response) {
         //$log.debug('responseError: ', response);
+        if (response.data.errCode === 2001) {
+          $rootScope.$broadcast(AUTH_EVENTS.sessionTimeout);
+        }
         return $q.reject(response);
       },
       'response'     : function (response) {
-        if (response.data.errCode === 2001) {
-          return $q.reject(response);
-        }
+        //$log.debug('response: ', response);
         return response;
       },
       'request'      : function (config) {

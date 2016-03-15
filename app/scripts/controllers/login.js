@@ -8,23 +8,7 @@
  * Controller of the hotsportsApp
  */
 angular.module('hotsportsApp')
-  .controller('LoginCtrl', function ($log, $window, $scope, $rootScope, $http, AuthService, AUTH_EVENTS) {
-    //自适应屏幕
-    //(function (doc, win) {
-    //  var docEl = doc.documentElement,
-    //      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-    //      recalc = function () {
-    //        var clientWidth = docEl.clientWidth;
-    //        if (!clientWidth) return;
-    //        docEl.style.fontSize = 20 * (clientWidth / 640) + 'px';
-    //      };
-    //
-    //  if (!doc.addEventListener) return;
-    //  win.addEventListener(resizeEvt, recalc, false);
-    //  doc.addEventListener('DOMContentLoaded', recalc, false);
-    //})($window.document, $window);
-
-
+  .controller('LoginCtrl', function ($log, $window, $scope, $rootScope, AuthService, AUTH_EVENTS) {
     $scope.credentials = {
       username: '',
       password: ''
