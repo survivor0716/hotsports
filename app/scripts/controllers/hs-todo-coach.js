@@ -35,7 +35,7 @@ angular.module('hotsportsApp')
     $scope.paginationConf = {
       currentPage: parseInt($routeParams.page) || 1,
       totalPage  : null,
-      row        : 1,
+      row        : 10,
       pages      : [],
       isPage     : function (num) {
         return this.currentPage == num;

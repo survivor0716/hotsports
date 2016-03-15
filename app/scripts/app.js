@@ -224,8 +224,12 @@ angular
         redirectTo: '/'
       });
   }])
-  .run(function ($log, $window, $rootScope, $location, $route, AUTH_EVENTS, Session, USER_ROLES, $anchorScroll) {
+  .run(function ($log, $window, $timeout, $rootScope, $location, $route, AuthService, AUTH_EVENTS, Session, USER_ROLES, $anchorScroll) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
+      $log.debug('$routeChangeStart');
+      $timeout(function () {
+        event.preventDefault();
+      }, 1000);
       //var authorizedRoles = next.data.authorizedRoles;
       //$log.debug(authorizedRoles);
       //if (!AuthService.isAuthorized(authorizedRoles)) {
@@ -241,7 +245,7 @@ angular
     });
 
     $rootScope.$on("routeChangeSuccess", function (event, current, previous) {
-      $log.debug('routeChangeSuccess');
+      //$log.debug('routeChangeSuccess');
     });
 
     $rootScope.$on("$routeChangeError", function (event, current, previous, rejection) {
@@ -253,9 +257,6 @@ angular
       if (rejection.authorized === false) {
         $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
       }
-      if(rejection.errCode === 2001) {
-        $rootScope.$broadcast(AUTH_EVENTS.sessionTimeout);
-      }
     });
 
     $rootScope.$on(AUTH_EVENTS.notAuthenticated, function () {
@@ -265,6 +266,7 @@ angular
 
     $rootScope.$on(AUTH_EVENTS.notAuthorized, function () {
       $log.debug('$broadcast \'无权限\' 回调: 提示错误信息');
+      $window.alert('无访问权限');
     });
 
     $rootScope.$on(AUTH_EVENTS.loginFailed, function () {
@@ -292,7 +294,7 @@ angular
     });
     $rootScope.$on(AUTH_EVENTS.sessionTimeout, function () {
       $log.debug('$broadcast \'session失效，即将返回登录页面\' 回调: 返回或弹出登录页');
-      $window.alert('session失效，即将返回登录页面');
+      //$window.alert('session失效，即将返回登录页面');
       Session.destroy();
       $location.path('/login');
     });
