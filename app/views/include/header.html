@@ -57,6 +57,7 @@
       <ul class="nav navbar-nav navbar-right">
         <!--<li data-toggle="collapse" data-target="#js-navbar-collapse"><a href="#/about">关于热动</a></li>-->
         <!--<li data-toggle="collapse" data-target="#js-navbar-collapse"><a href="#/contact">联系我们</a></li>-->
+        <li ng-click="abortRequest()"><a href="">Abort Request</a></li>
         <li data-toggle="modal" data-target=".change-password-modal" ng-if="isAuthorized([userRoles.hotsportsManager, userRoles.superManager, userRoles.cashier])">
           <a href="">修改密码</a>
         </li>

@@ -15,7 +15,7 @@ angular.module('hotsportsApp')
         return response;
       },
       'responseError': function (response) {
-        //$log.debug('responseError: ', response);
+        $log.debug('responseError: ', response);
         //if (response.status === 403) {
         //  if (response.data.errCode === 2001) {
         //    $rootScope.$broadcast(AUTH_EVENTS.sessionTimeout);
