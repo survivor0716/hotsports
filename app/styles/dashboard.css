@@ -40,7 +40,7 @@ header {
     top: 50px;
     bottom: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 10;
     display: block;
     padding: 50px 20px 20px;
     overflow-x: hidden;

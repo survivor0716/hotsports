@@ -71,6 +71,7 @@ angular
     $logProvider.debugEnabled(true);
 
     $httpProvider.interceptors.push('httpInterceptor');
+    $httpProvider.interceptors.push('timestampMarker');
 
     var authPromise = function (authorizedRoles) {
       return ['$log', '$q', 'USER_ROLES', 'AuthService', function ($log, $q, USER_ROLES, AuthService) {
