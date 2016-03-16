@@ -39,7 +39,9 @@ angular.module('hotsportsApp')
      * @returns {boolean}
      */
     authService.isAuthenticated = function () {
-      return !!Session.userId;
+      if ($window.localStorage.userInfo)
+        return !!Session.userId;
+      return false;
     };
 
     //
