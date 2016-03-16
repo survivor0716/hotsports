@@ -226,10 +226,7 @@ angular
   }])
   .run(function ($log, $window, $timeout, $rootScope, $location, $route, AuthService, AUTH_EVENTS, Session, USER_ROLES, $anchorScroll) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-      $log.debug('$routeChangeStart');
-      $timeout(function () {
-        event.preventDefault();
-      }, 1000);
+      //$log.debug('$routeChangeStart');
       //var authorizedRoles = next.data.authorizedRoles;
       //$log.debug(authorizedRoles);
       //if (!AuthService.isAuthorized(authorizedRoles)) {
