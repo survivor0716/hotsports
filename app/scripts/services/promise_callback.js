@@ -20,7 +20,7 @@ angular.module('hotsportsApp')
         }
       },
       failureCallback: function (response) {
-        $log.debug('failureCallback', arguments);
+        //$log.debug('failureCallback', arguments);
         return $q.reject(response.data.errMsg);
       }
     };
