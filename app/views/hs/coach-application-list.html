@@ -15,7 +15,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="data in listData">
+      <tr ng-repeat="data in listData track by $index">
         <td class="text-center">{{data.createTime}}</td>
         <td class="text-right">{{data.name}}</td>
         <td class="text-right">{{data.phone}}</td>
@@ -26,9 +26,19 @@
       </tbody>
       <tfoot>
       <tr>
-        <td colspan="7">
-          <my-pagination conf="paginationConf"></my-pagination>
+        <td>
+          <uib-pagination total-items="paginationConf.totalItems"
+                          ng-model="paginationConf.currentPage"
+                          ng-change="pageChanged()"
+                          max-size="paginationConf.maxSize"
+                          class="pagination"
+                          first-text="首页"
+                          last-text="末页"
+                          boundary-links="true"
+                          direction-links="false"
+                          force-ellipses="true"></uib-pagination>
         </td>
+        <td></td>
       </tr>
       </tfoot>
     </table>
